@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+	<html lang="pt-br">
+		<head>
+			<meta charset="utf-8"/>
+			<title>Livros</title>
+		</head>
+	<body>
+
+		<h1>Relação de Livros</h1>
+		<table>
+			<tr>
+				<td>ID</td>
+				<td>Título</td>
+				<td>Autor</td>
+				<td>Editora</td>
+			</tr>
+      <% for( let i = 0; i < books.length; i++ ) { %>
+        <tr>
+					<td><%= books[i].id %> </td>
+					<td><%= books[i].title %> </td>
+					<td><%= books[i].authorid %> </td>
+					<td><%= books[i].publisherid %> </td>
+				</tr>		     
+      <% } %>
+			</table> 
+	</body>
+</html>

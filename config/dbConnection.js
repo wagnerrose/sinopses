@@ -1,15 +1,17 @@
-var postgres = require('pg');
+const { Pool } = require('pg');
 
-var connPostgres = function(){
-    return connection = postgres.createConnection({
-        host: 'localhost',
-        user: 'postgres',
-        password: 'bela1010',
-        database: 'snopses_development',
-        port: 5432
-    });
+var connPostgres = function() {
+  const credentials = {
+    host: 'localhost',
+    user: 'postgres',
+    password: 'bela1010',
+    database: 'snopses_development',
+    port: 5432,
+  };
+  var client = new Pool(credentials);
+  return client;
 }
-
 module.exports = function(){
-    return connPostgres;
-}
+  console.log('Passei autoload');
+  return connPostgres;
+};

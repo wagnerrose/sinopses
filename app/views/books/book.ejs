@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+	<html lang="pt-br">
+		<head>
+			<meta charset="utf-8"/>
+			<title>Livro</title>
+		</head>
+	<body>
+
+		<h1>Livro</h1>
+		<table>
+			<tr>
+				<td>Id</td>
+				<td>Título</td>
+				<td>Id do autor</td>
+				<td>Id do editor</td>
+				<td>Id da sinopse</td>
+				<td>Data de publicação</td>
+				<td>Categoria</td>
+				<td>ISBN 13</td>
+				<td>Link de Imagem</td>
+			</tr>
+			<tr>
+				<td><%= book.id%>  </td>
+				<td><%= book.title %>  </td>
+				<td><%= book.authorid %> </td>
+				<td><%= book.publisherid%>  </td>
+				<td><%= book.synopseid %>  </td>
+				<td><%= book.publisheddate.toLocaleDateString ()%>  </td>
+				<td><%= book.categories %> </td>
+				<td><%= book.isbn_13%>  </td>
+				<td><%= book.imageLink %>  </td>			
+			</tr>
+		</table>
+	</body>
+</html>

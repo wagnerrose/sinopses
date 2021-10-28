@@ -1,12 +1,25 @@
 <!DOCTYPE html>
 	<html lang="pt-br">
 		<head>
-			<meta charset="utf-8"/>
-			<title>Portal de Cadastro de Sinopses de Livros</title>
+			<%- include('../partials/head') %> 
 		</head>
 	<body>
-
-		<h1>Bem vindo a página inicial</h1>
-
+<header>
+		<%- include('../partials/header') %> 
+</header>
+	<main>
+		<div class="jumbotron">
+			<h1>Bem vindo a página inicial</h1>
+			<br><br>
+			<ul>
+				<li><a href="/editoras">Editoras</a></li>
+				<li><a href="/autores">Autores</a></li>
+				<li><a href="/livros">Livros</a></li>
+			</ul> 
+		</div>
+	</main>
+	<footer>
+		<%- include('../partials/footer') %> 
+	</footer>
 	</body>
 </html>

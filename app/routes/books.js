@@ -6,7 +6,6 @@ module.exports = function(application) {
 
     booksModel.getBook(connection, function(error, result){
       res.render("books/book", {book: result.rows[0]});
-      console.log(result.rows[0]);
     })
   });
 

@@ -7,7 +7,19 @@
 	<body>
 
 		<h1>Adicionar Autor</h1>
-
+		<br>
+		<form action="/authors/save" method="post">
+			<fieldset>
+				<legend>Autor</legend>
+					<label for="fname">Nome:</label><br>
+					<input type="text" id="name" name="name"><br>
+					<br>
+					<label for="birthdate">Nascimento:</label>
+					<input type="date" id="birthdate" name="birthdate"><br>
+					<br>
+					<input type="submit" value="Salvar">
+			</fieldset>
+		</form>
 	</body>
 </html>
 

@@ -8,6 +8,9 @@ app.set('views', './app/views');
 
 // ## funciona como midleware
 app.use(bodyParser.urlencoded({extended: true}));
+// app.use(express.json());
+// app.use(express.json({ type: 'application/vnd.api+json' }));
+
 
 consign()
   .include('app/routes')

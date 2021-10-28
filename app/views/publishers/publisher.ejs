@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+	<html lang="pt-br">
+		<head>
+			<%- include('../partials/head') %>
+			<style>
+			.button {
+				border: none;
+				color: black;
+				padding: 15px 32px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 16px;
+			}
+			.home {
+				background-color: #4CAF50; /* Green */
+				color: white;
+			}
+			.new {
+				background-color: blue;
+				color: white;
+			}
+		</style>  
+		</head>
+	<body>
+		<header>
+				<%- include('../partials/header') %>
+		</header>
+		<main>
+			<div class="container-fluid">
+				<h1 class="centro">Nova Editora</h1>
+				<div class="jumbotron">
+					<table>
+						<tr>
+							<td>Id</td>
+							<td>Editora</td>
+						</tr>
+						<tr>
+							<td><%= publisher.id%>  </td>
+							<td><%= publisher.name %>  </td>
+						</tr>
+					</table>
+				</div>
+	</main>		
+	<footer>
+		<%- include('../partials/footer') %> 
+	</footer>
+	</body>
+</html>

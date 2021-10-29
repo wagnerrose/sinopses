@@ -5,6 +5,9 @@ module.exports = function(application){
 
   application.post('/authors/save', function(req,res){
     var author = req.body;
+    // req.body.check('birthdate').notEmpty();
+
+
     var connection = application.config.dbConnection;
     var authorsModel = new application.app.models.authorsModel(connection);
 

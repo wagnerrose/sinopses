@@ -14,6 +14,7 @@ module.exports = function(application) {
     var publishersModel = application.app.models.publishersModel;
 
     publishersModel.getPublishers(connection, function(error, result){
+      console.log(result.rows);
       res.render("publishers/publishers", {publishers: result.rows});
     })
   });

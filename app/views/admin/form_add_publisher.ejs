@@ -14,16 +14,18 @@
 					<div class="row">
 						<div class="col col-sm-3"></div>
 						<div class="col col-sm-6">
-							<div action="/publishers/save" method="post">
-								<div class="form-group">
-									<label for="fname">Nome:</label><br>
-									<input type="text" class="form-control" id="name" name="name"><br>
-									<div class="row">
-										<div class="col">
-											<input class="btn btn-primary btn-sm" type="submit" value="Submit">
-											<a href="/editoras" class="btn btn-danger btn-sm" tabindex="-1" role="button" aria-disabled="true">Cancela</a>
+							<div>
+								<form action="/publishers/save" method="post">
+									<form class="form-group">
+										<label for="fname">Nome:</label><br>
+										<input type="text" class="form-control" id="name" name="name"><br>
+										<div class="row">
+											<div class="col">
+												<input class="btn btn-primary btn-sm" type="submit" value="Submit">
+												<a href="/editoras" class="btn btn-danger btn-sm" tabindex="-1" role="button" aria-disabled="true">Cancela</a>
+											</div>
 										</div>
-									</div>
+									</form>
 								</div>
 							</div>
 						</div>

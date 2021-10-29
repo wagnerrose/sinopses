@@ -1,77 +1,100 @@
 <!DOCTYPE html>
 	<html lang="pt-br">
 		<head>
-			<meta charset="utf-8"/>
-			<title>Formulário de cadastro de Livros</title>
+			<%- include('../partials/head') %>
 		</head>
 	<body>
-
-		<h1>Adicionar Livro</h1>
-		<form action="/books/save" method="post">
-				<fieldset>
-					<legend>Dados do Livro:</legend>
-					<label for="book">Nome do Livro</label>
-					<input type="text"id="book" name="book" placeholder= "Informe o nome compleo do livro"/>
-				</br>	<br>
-				<label for="author">Autor:</label>
-				<select id="author" name="author">
-					<option value="3">Monteiro Lobato</option>
-					<option value="4">José de Alencar</option>
-					<option value="5">Cecília Meireles</option>
-					<option value="6">Carlos Drummond de Andrade</option>
-				</select>
-				<br><br> 
-				<label for="publisher">Editora:</label>
-				<select id="publisher" name="publisher">
-					<option value="1">Companhia da Letras</option>
-					<option value="2">Aleph</option>
-					<option value="3">Suma</option>
-					<option value="4">Editora Intrínseca</option>
-					<option value="4">Grupo Editorial Record</option>
-					<option value="5">Editora Rocco</option>
-					<option value="6">Globo Livros</option>
-					<option value="7">Darkside Books</option>
-					<option value="8">Harper Collins</option>
-					<option value="9">Editora Arqueiro</option>
-					<option value="10">Leya</option>
-					<option value="11">Saraiva</option>
-					<option value="12">FTD</option>
-			</select>
-		</br><br>
-				<label for="publisheddate">Data de publicação:</label>
-				<input type="date" id="publisheddate" name="publisheddate">
-				<br></br>
-				<label for="category">Categoria:</label>
-				<select id="category" name="category">
-					<option value="1">Biografias </option>
-					<option value="2">Folclore </option>
-					<option value="3">Literatura Brasileira </option>
-					<option value="4">Genealogia </option>
-					<option value="5">Humor</option>
-					<option value="6">Infanto juvenis </option>
-					<option value="7"> Manuscritos </option>
-					<option value="8">Poesia</option>
-					<option value="9">Artes</option>
-					<option value="10">Ciências Exatas</option>
-					<option value="11">História do Brasil</option>
-					<option value="12">Moda</option>
-					<option value="13">Sociologia</option>
-				</select>
-				<br><br>
-				
-				<label for="isbn_13">Código ISBN-13:</label>
-				<input type="number" id="isbn_13" name="isbn_13">
-				<br><br>
-				<label for="sinopsis">Sinopse:</label>
-				<textarea name="sinopsis" rows="10" cols="40">
-					O livro comenta sobre ....
-				</textarea>
-				<br><br>
-				<label for="imageLink">Link da Imagem de capa:</label>
-				<input type="url" id="imageLink" name="imageLink">
-				<br><br>
-				<input type="submit" value="Salvar">
-			</fieldset> 
-		</form>
+		<header>
+				<%- include('../partials/header') %>
+		</header>
+		<main>
+			<div class="container-fluid">
+				<h1 class="centro">Livro</h1>
+				<div class="jumbotron">
+					<div class="row">
+						<div class="col col-sm"></div>
+						<div class="col col-sm">				
+							<div action="/books/save" method="post">
+								<div class="form-group">
+										<label for="book">Nome do Livro</label>
+										<input type="text" class="form-control" id="book" name="book" placeholder= "Informe o nome compleo do livro"/>
+									</br>	<br>
+									<label class="form-label" for="author">Autor:</label>
+									<select class="form-select form-control" id="author" name="author">
+										<option selected>Selecione o autor</option>
+										<option value="3">Monteiro Lobato</option>
+										<option value="4">José de Alencar</option>
+										<option value="5">Cecília Meireles</option>
+										<option value="6">Carlos Drummond de Andrade</option>
+									</select>
+									<br><br> 
+									<label for="publisher">Editora:</label>
+									<select class="form-select form-control" id="publisher" name="publisher">
+										<option selected>Selecione a Editora</option>
+										<option value="1">Companhia da Letras</option>
+										<option value="2">Aleph</option>
+										<option value="3">Suma</option>
+										<option value="4">Editora Intrínseca</option>
+										<option value="4">Grupo Editorial Record</option>
+										<option value="5">Editora Rocco</option>
+										<option value="6">Globo Livros</option>
+										<option value="7">Darkside Books</option>
+										<option value="8">Harper Collins</option>
+										<option value="9">Editora Arqueiro</option>
+										<option value="10">Leya</option>
+										<option value="11">Saraiva</option>
+										<option value="12">FTD</option>
+								</select>
+							</br><br>
+									<label for="publisheddate">Data de publicação:</label>
+									<input class="form-control" type="date" id="publisheddate" name="publisheddate">
+									<br></br>
+									<label for="category">Categoria:</label>
+									<select class="form-select form-control" id="category" name="category">
+										<option selected>Selecione a categoria</option>
+										<option value="1">Biografias </option>
+										<option value="2">Folclore </option>
+										<option value="3">Literatura Brasileira </option>
+										<option value="4">Genealogia </option>
+										<option value="5">Humor</option>
+										<option value="6">Infanto juvenis </option>
+										<option value="7"> Manuscritos </option>
+										<option value="8">Poesia</option>
+										<option value="9">Artes</option>
+										<option value="10">Ciências Exatas</option>
+										<option value="11">História do Brasil</option>
+										<option value="12">Moda</option>
+										<option value="13">Sociologia</option>
+									</select>
+									<br><br>
+									
+									<label for="isbn_13">Código ISBN-13:</label>
+									<input class="form-control" type="number" id="isbn_13" name="isbn_13">
+									<br><br>
+									<label for="sinopsis">Sinopse:</label>
+									<textarea name="sinopsis" rows="10" cols="40">
+										O livro comenta sobre ....
+									</textarea>
+									<br><br>
+									<label for="imageLink">Link da Imagem de capa:</label>
+									<input class="form-control" type="url" id="imageLink" name="imageLink">
+									<br><br>
+									<div class="row">
+										<div class="col">
+											<input class="btn btn-primary btn-sm" type="submit" value="Submit">
+											<a href="/editoras" class="btn btn-danger btn-sm" tabindex="-1" role="button" aria-disabled="true">Cancela</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col col-sm"></div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<footer>
+			<%- include('../partials/footer') %> 
+		</footer>
 	</body>
 </html>

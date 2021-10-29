@@ -3,24 +3,7 @@
 		<head>
 			<%- include('../partials/head') %>
 			<style>
-			.button {
-				border: none;
-				color: black;
-				padding: 15px 32px;
-				text-align: center;
-				text-decoration: none;
-				display: inline-block;
-				font-size: 16px;
-			}
-			.home {
-				background-color: #4CAF50; /* Green */
-				color: white;
-			}
-			.new {
-				background-color: blue;
-				color: white;
-			}
-		</style>  
+			</style>  
 		</head>
 	<body>
 		<header>
@@ -39,19 +22,23 @@
 									<td>Título</td>
 									<td>Autor</td>
 									<td>Editora</td>
+									<td>Sinopse</td>
 								</tr>
 								<% for( let i = 0; i < books.length; i++ ) { %>
 									<tr>
 										<td><%= books[i].id %> </td>
 										<td><%= books[i].title %> </td>
-										<td><%= books[i].authorid %> </td>
-										<td><%= books[i].publisherid %> </td>
+										<td><%= books[i].author %> </td>
+										<td><%= books[i].publisher %> </td>
+										<td><%= books[i].synopsis %> </td>
 									</tr>		     
 								<% } %>
 							</table>
 							<br><br>
-							<a href="/" class="button home">Home</a>
-							<a href="/form_add_book" class="button new">Novo Livro</a>
+							<div class="col">
+								<a href="/" class="btn btn-primary btn-sm" tabindex="-1" role="button" aria-disabled="true">Home</a>
+								<a href="/form_add_book" class="btn btn-primary btn-sm" tabindex="-1" role="button" aria-disabled="true">Novo Livro</a>
+							</div>
 						</div>
 						<div class="col col-sm-2"></div>
 					</div>

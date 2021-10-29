@@ -23,6 +23,10 @@ Passo a Passo da instalação
     ## mover o script app.js para a pasta criada
     ## mover o diretório views para a pasta criada
 
+#### Instalando o express-validator --> midleware de validação de dados
+    npm install --save express-validator
+
+
 
 #### Criar as tabelas no postgres
 ### criando a tabela publishers

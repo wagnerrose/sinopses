@@ -5,9 +5,9 @@ module.exports = function(application){
   application.post('/publishers/save', function(req,res){
     var publisher = req.body;
     var connection = application.config.dbConnection;
-    var publishersModel = application.app.models.publishersModel;
+    var publishersModel = new application.app.models.publishersModel(connection);
 
-    publishersModel.savePublisher(publisher, connection, function(error, result){
+    publishersModel.savePublisher(publisher, function(error, result){
       res.redirect('/editoras');
     });
   });

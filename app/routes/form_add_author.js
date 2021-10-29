@@ -6,10 +6,9 @@ module.exports = function(application){
   application.post('/authors/save', function(req,res){
     var author = req.body;
     var connection = application.config.dbConnection;
-    var authorsModel = application.app.models.authorsModel;
-    console.log(author);
+    var authorsModel = new application.app.models.authorsModel(connection);
 
-    authorsModel.saveAuthor(author, connection, function(error, result){
+    authorsModel.saveAuthor(author, function(error, result){
       res.redirect("/autores");
     });
   });

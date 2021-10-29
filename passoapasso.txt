@@ -48,6 +48,13 @@ CREATE TABLE synopses (
  PRIMARY KEY (id)
 );
 
+### criando a tabela Categories
+CREATE TABLE categories (
+ id serial NOT NULL,
+ category VARCHAR(50),
+ PRIMARY KEY (id)
+);
+
 ### Criando a tabela books
 CREATE TABLE books (
  id serial NOT NULL,
@@ -55,20 +62,37 @@ CREATE TABLE books (
  authorId INT NOT NULL,
  publisherId INT NOT NULL,
  synopsisId INT,
- category VARCHAR(30),
+ category categoryId INT NOT NULL,
  publishedDate date,
  isbn_13 VARCHAR(13),
  imageLink VARCHAR(250),
  PRIMARY KEY (id),
  FOREIGN KEY (authorId) REFERENCES authors (id) ON DELETE CASCADE ON UPDATE CASCADE,
+ FOREIGN KEY (categoryId) REFERENCES categories (id) ON DELETE CASCADE ON UPDATE CASCADE,
  FOREIGN KEY (publisherId) REFERENCES publishers (id)ON DELETE CASCADE ON UPDATE CASCADE,
  FOREIGN KEY (synopsisId) REFERENCES synopses (id)
 );
 
 ##### adicionado uma chave estrangeira a tabela existente
 ALTER TABLE tabela_filha
-ADD CONSTRAINT nome_constraint FOREIGN KEY (coluna) REFERENCES tabela-pai(coluna);
+ADD CONSTRAINT fk_id_categories FOREIGN KEY (categoryId) REFERENCES Categories(id);
 
+##### excluindo campo na tabela
+ALTER TABLE books
+DROP COLUMN category;
+
+##### alterando propriedades de uma coluna da tabela
+ALTER TABLE books
+ALTER COLUMN categoryId SET INT NOT NULL;
+
+###### renomeando coluna de uma tabela
+ALTER TABLE books
+RENAME COLUMN categoryid TO categoriesid;
+
+#### adicionado campo chave estrangeira na tabela
+ALTER TABLE books
+ADD COLUMN categoryId INT NOT NULL,
+ADD CONSTRAINT fk_id_categories FOREIGN KEY (categoryId) REFERENCES Categories(id);
 
 ###### Criando chave composta
 FOREIGN KEY (col1, col2) REFERENCES tabela-pai (col1, col2);
@@ -85,3 +109,24 @@ FOREIGN KEY (col1, col2) REFERENCES tabela-pai (col1, col2);
     MAXVALUE 9223372036854775807
     START 1
     CACHE 1;
+
+
+
+    Biografias
+    Coleções
+    Comportamento
+    Contos
+    Crítica Literária
+    Ficção Científica
+    Folclore
+    Genealogia
+    Humor
+    Infanto juvenis
+    Jogos
+    Jornais
+    Literatura Brasileira
+    Literatura Estrangeira
+    Livros Raros
+    Manuscritos
+    Poesia
+    Outros Assuntos 

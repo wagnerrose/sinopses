@@ -5,9 +5,9 @@ module.exports = function(application){
   application.post('/books/save', function(req,res){
     var book = req.body;
     var connection = application.config.dbConnection;
-    var booksModel = application.app.models.booksModel;
+    var booksModel = new application.app.models.booksModel(connection);
 
-    booksModel.saveBooks(book, connection, function(error, result){
+    booksModel.saveBooks(book, function(error, result){
       res.redirect("/livros");
     });
   });

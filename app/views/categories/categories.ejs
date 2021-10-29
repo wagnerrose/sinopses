@@ -11,7 +11,7 @@
 		</header>
 		<main>
 			<div class="container-fluid">
-				<h1 class="centro">Relação de Autores</h1>
+				<h1 class="centro">Relação de Categorias</h1>
 				<div class="jumbotron">
 				<div class="row">
 					<div class="col col-sm"></div>
@@ -19,21 +19,19 @@
 						<table class="table table-dark">
 							<tr>
 								<td>ID</td>
-								<td>Autor</td>
-								<td>Nascimento</td>
+								<td>Categoria</td>
 							</tr>
-							<% for( let i = 0; i < authors.length; i++ ) { %>
+							<% for( let i = 0; i < categories.length; i++ ) { %>
 								<tr>
-									<td><%= authors[i].id %> </td>
-									<td><%= authors[i].name %> </td>
-									<td><%= authors[i].birthdate.toLocaleDateString () %> </td>
+									<td><%= categories[i].id %> </td>
+									<td><%= categories[i].category %> </td>
 								</tr>		     
 							<% } %>
 							</table>
 							<br><br>
 							<div class="col">
 								<a href="/" class="btn btn-primary btn-sm" tabindex="-1" role="button" aria-disabled="true">Home</a>
-								<a href="/form_add_author" class="btn btn-primary btn-sm" tabindex="-1" role="button" aria-disabled="true">Novo Autor</a>
+								<a href="/form_add_category" class="btn btn-primary btn-sm" tabindex="-1" role="button" aria-disabled="true">Nova categoria</a>
 							</div>
 						</div>
 						<div class="col col-sm"></div>

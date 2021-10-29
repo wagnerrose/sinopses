@@ -23,6 +23,7 @@
 									<td>Autor</td>
 									<td>Editora</td>
 									<td>Sinopse</td>
+									<td>Categoria</td>
 								</tr>
 								<% for( let i = 0; i < books.length; i++ ) { %>
 									<tr>
@@ -31,6 +32,7 @@
 										<td><%= books[i].author %> </td>
 										<td><%= books[i].publisher %> </td>
 										<td><%= books[i].synopsis %> </td>
+										<td><%= books[i].category %> </td>
 									</tr>		     
 								<% } %>
 							</table>

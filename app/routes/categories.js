@@ -1,50 +1,25 @@
+const {check, validationResult} = require('express-validator');
 module.exports = function(application) {
-
+  
+  // lista categoria
   application.get('/categoria', function(req,res){
-    var connection = application.config.dbConnection;
-    var categoriesModel = new application.app.models.categoriesModel(connection);
-
-    categoriesModel.getCategory(function(error, result){
-      res.render("categories/category", {category: result.rows[0]});
-    })
+    application.app.controllers.categories.category(application, req, res);
   });
 
+  // lista categorias
   application.get('/categorias', function(req,res){
-    var connection = application.config.dbConnection;
-    var categoriesModel = new application.app.models.categoriesModel(connection);
-
-    categoriesModel.getCategories(function(error, result){
-      res.render("categories/categories", {categories: result.rows});
-    })
+    application.app.controllers.categories.categories(application, req, res);
   });
-
-
-  const {check, validationResult} = require('express-validator');
 
   application.get('/form_add_category', function(req,res){
-    res.render('admin/form_add_category', {validator : undefined, category : {}});
+    application.app.controllers.categories.form_add_category(application, req, res);
   });
 
   application.post('/category/save', 
-  [check('category')
-  .notEmpty()
-  .withMessage('Nome da categoria deve ser preenchido.')],
-  function(req,res){
-    var category = req.body;
-    // validacao de dados
-    const validator = validationResult(req);
-    if(!validator.isEmpty()) {
-        res.render("admin/form_add_category",{validator : validator, category : category});
-      return;
-    };
-    var connection = application.config.dbConnection;
-    var categoriesModel = new application.app.models.categoriesModel(connection);
-    // salva nova categoria
-    categoriesModel.saveCategory(category, function(error, result){
-      res.redirect("/categorias");
-    });
+    [check('category')
+    .notEmpty()
+    .withMessage('Nome da categoria deve ser preenchido.')],
+    function(req,res){
+      application.app.controllers.categories.category_save(application, req, res);
   });
-
-
-
 };  

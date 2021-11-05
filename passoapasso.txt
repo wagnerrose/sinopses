@@ -107,6 +107,59 @@ FOREIGN KEY (col1, col2) REFERENCES tabela-pai (col1, col2);
  FOREIGN KEY (publisherId) REFERENCES publishers (id)ON DELETE CASCADE ON UPDATE CASCADE;
 
 
+############## 
+######## criando tabelas sqlite3
+
+### authors
+create table authors (
+    id integer not NULL PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    birthdate TEXT
+);
+
+### categories
+CREATE TABLE categories(
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    category TEXT
+);
+
+##### publishers
+CREATE TABLE publishers(
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    name TEXT
+);
+
+###### synopsis
+CREATE TABLE synopses(
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    description TEXT
+);
+
+##### books
+CREATE TABLE books(
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    title TEXT,
+    authorid INTEGER NOT NULL,
+    publisherid INTEGER NOT NULL,
+    synopsisid INTEGER,
+    publisheddate TEXT,
+    isbn_13 TEXT,
+    imagelink TEXT,
+    categoryid INTEGER NOT NULL,
+    FOREIGN KEY (authorid) REFERENCES authors(id) ON DELETE CASCADE,
+    FOREIGN KEY (publisherid) REFERENCES publishers(id) ON DELETE CASCADE,
+    FOREIGN KEY (categoryid) REFERENCES categories(id) ON DELETE CASCADE,
+    FOREIGN KEY (synopsisid) REFERENCES synopses(id)
+);
+
+##### incluindo chave estrangeira a tabela synopsis
+ALTER TABLE synopses ADD COLUMN bookid INTEGER REFERENCES books(id) ON DELETE CASCADE;
+
+##### incluindo CONSTRAINT
+ALTER TABLE synopses ADD CONSTRAINT fk_books FOREIGN KEY (booksid) REFERENCES books(id) ON DELETE CASCADE;
+###### necessário habilitar para q o constraint funcione por sessão
+PRAGMA foreign_keys=on;
+
  CREATE SEQUENCE publishers_id_seq
     INCREMENT 1
     MINVALUE 1

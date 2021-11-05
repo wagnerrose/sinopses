@@ -11,7 +11,7 @@ module.exports = function(application) {
   });
 
   application.get('/form_add_publisher', function(req,res){
-    application.app.controllers.publishers.form_add_publisher(application. req, res);
+    application.app.controllers.publishers.form_add_publisher(application, req, res);
   });
 
   application.post('/publishers/save',[

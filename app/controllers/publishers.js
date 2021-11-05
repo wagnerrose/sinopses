@@ -1,4 +1,5 @@
 const {check, validationResult} = require('express-validator');
+
 module.exports.publisher = function(application, req, res) {
   var connection = application.config.dbConnection;
   var publishersModel = new application.app.models.publishersModel(connection);
@@ -19,7 +20,7 @@ module.exports.publishers = function(application, req, res) {
 }
 
 module.exports.form_add_publisher = function(application, req, res) {
-  res.render('publishers/form_add_publisher', {validator: undefined, publisher : {}});
+  res.render('publishers/form_add_publisher', {validator: undefined, publisher : {} });
 }
 
 module.exports.publisher_save = function(application, req, res) {

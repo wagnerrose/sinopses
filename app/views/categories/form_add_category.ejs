@@ -9,6 +9,20 @@
 		</header>
 		<main>
 			<div class="container-fluid">
+				<% console.log(validator);  %> 
+				<% if(validator !== undefined) {%>
+					<div class="alert alert-danger" role="alert">
+						<ul>
+							<% for( var i = 0; i < validator.errors.length; ++i) { %> 
+								<li>
+									<%= validator.errors[i].msg %>
+									<% console.log('deu esse erro ==>>', validator.errors[i].msg); %>
+								</li>
+							<% } %> 
+						</ul>
+					</div>
+				<% } %> 	
+
 				<h1 class="centro">Cadastro de Categoria</h1>
 				<div class="jumbotron">
 					<div class="row">
@@ -16,10 +30,10 @@
 						<div class="col col-sm">
 							<form action="/category/save" class="form-group" method="post">
 								<label for="fname">Categoria:</label><br>
-								<input type="text" class="form-control" id="category" name="category"><br>
+								<input type="text" class="form-control" id="category" name="category" value="<%= category.category %> "><br>
 								<div class="row">
 									<div class="col">
-										<input class="btn btn-primary btn-sm" type="submit" value="Submit">
+										<input class="btn btn-primary btn-sm" type="submit" value="Salvar">
 										<a href="/categorias" class="btn btn-danger btn-sm" tabindex="-1" role="button" aria-disabled="true">Cancela</a>
 									</div>
 								</div>

@@ -1,21 +1,24 @@
+const {check, validationResult} = require('express-validator');
+
 module.exports = function(application) {
 
   application.get('/editora', function(req,res){
-    var connection = application.config.dbConnection;
-    var publishersModel = new application.app.models.publishersModel(connection);
-
-    publishersModel.getPublisher(function(error, result){
-      res.render("publishers/publisher", {publisher: result.rows[0]});
-    })
+    application.app.controllers.publishers.publisher(application, req, res);
   });
 
   application.get('/editoras', function(req,res){
-    var connection = application.config.dbConnection;
-    var publishersModel = new application.app.models.publishersModel(connection);
+    application.app.controllers.publishers.publishers(application, req, res);
+  });
 
-    publishersModel.getPublishers(function(error, result){
-      // console.log(result.rows);
-      res.render("publishers/publishers", {publishers: result.rows});
-    })
+  application.get('/form_add_publisher', function(req,res){
+    application.app.controllers.publishers.form_add_publisher(application. req, res);
+  });
+
+  application.post('/publishers/save',[
+    check('name')
+    .notEmpty()
+    .withMessage('Nome da editora deve ser preenchido.')],
+    function(req,res){
+     application.app.controllers.publishers.publisher_save(application, req, res);
   });
 };  

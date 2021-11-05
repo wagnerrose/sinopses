@@ -11,8 +11,8 @@ Categories.prototype.getCategories = function(callback){
 };
 
 Categories.prototype.saveCategory = function(category, callback){
-  const sql = 'INSERT INTO categories(name, birthdate) VALUES ($1, $2);';
-  this._client.query(sql, [category.name, author.birthdate], callback);
+  const sql = 'INSERT INTO categories(category) VALUES ($1);';
+  this._client.query(sql, [category.category], callback);
 };
 module.exports = function(){
   return Categories;

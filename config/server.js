@@ -1,9 +1,10 @@
 const express = require('express');
 const consign = require('consign');
 const bodyParser = require('body-parser');
-const {check, validationResult} = require('express-validator');
 
 const app = express();
+// const {check, validationResult} = require('express-validator');
+
 app.set('view engine', 'ejs');
 app.set('views', './app/views');
 

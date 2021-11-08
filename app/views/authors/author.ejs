@@ -1,24 +1,47 @@
-<!DOCTYPE html>
-	<html lang="pt-br">
-		<head>
-			<meta charset="utf-8"/>
-			<title>Autor</title>
-		</head>
-	<body>
-
-		<h1>Autor</h1>
-		<table>
-			<tr>
-				<td>Id</td>
-				<td>Nome</td>
-				<td>Nascimento</td>
-			</tr>
-			<tr>
-				<td><%= author.id%>  </td>
-				<td><%= author.name %>  </td>
-				<td><%= author.birthdate %> </td>
-			</tr>
-		</table>
-
+<html lang="pt-br">
+  <head>
+    <%- include('../partials/head') %>
+  </head>
+  <body>
+    <header>
+        <%- include('../partials/header') %>
+    </header>
+    <main>
+      <div class="container-fluid">
+        <div class="jumbotron">
+          <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+              <div class="card">
+                <div class="card-header">
+                  <h2 class="card-title centro">Autor</h5>
+                </div>
+                <div class="card-body">
+                  <div class="row justify-content-md-center">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-auto">
+                      <p>Id: <%= author.id%> </p> 
+                      <p>Nome: <%= author.name %></p>
+                      <p>Nascimento: <%= author.birthdate.toLocaleDateString() %></p>
+                    </div>
+                    <div class="col-sm-2"></div>
+                  </div>
+                </div>
+              </div>
+            <div class="col-sm-2"></div>
+          </div>
+        </div>
+        <div class="row" style="margin-top: 20px;">
+          <div class="col-sm"></div>
+          <div class="col-sm-auto">
+            <a href="/autores" class="btn btn-primary">Voltar</a>
+          </div>
+          <div class="col-sm"></div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <%- include('../partials/footer') %> 
+    </footer> 
 	</body>
-</html>
+  </html>

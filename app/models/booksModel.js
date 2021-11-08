@@ -16,8 +16,22 @@ function Books(connection) {
   this._client.query(sql, callback);
 };
 
-Books.prototype.getBook =  function(callback){
-  this._client.query('select * from books where id = 1', callback);
+Books.prototype.getBook =  function(book, callback){
+  var sql = "select bk.id , bk.title, bk.publisheddate, "
+  sql += "ath.name as author, pb.name as publisher, "
+  sql += "sn.description as synopsis, ct.category as category ";
+  sql += "from books as bk ";
+  sql += "inner join authors as ath ";
+  sql += "on bk.authorid = ath.id ";
+  sql += "inner join publishers as pb ";
+  sql += "on bk.publisherid = pb.id ";
+  sql += "inner join synopses as sn ";
+  sql += "on bk.synopsisid = sn.id ";
+  sql += "inner join categories as ct ";
+  sql += "on bk.categoriesid = ct.id ";
+  sql += "where bk.id = " + book.id + ";";
+  console.log(sql);
+  this._client.query(sql, callback);
 };
 
 Books.prototype.saveBook =  function(book, callback){

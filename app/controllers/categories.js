@@ -4,7 +4,9 @@ module.exports.category = function(application, req, res){
     var connection = application.config.dbConnection;
     var categoriesModel = new application.app.models.categoriesModel(connection);
 
-    categoriesModel.getCategory(function(error, result){
+    var category = req.query;
+
+    categoriesModel.getCategory(category,function(error, result){
       res.render("categories/category", {category: result.rows[0]});
     })
 };

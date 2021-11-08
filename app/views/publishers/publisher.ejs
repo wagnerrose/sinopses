@@ -1,32 +1,44 @@
-<!DOCTYPE html>
-	<html lang="pt-br">
-		<head>
-			<%- include('../partials/head') %>
-			<style>
-			</style>  
-		</head>
-	<body>
-		<header>
-				<%- include('../partials/header') %>
-		</header>
-		<main>
-			<div class="container-fluid">
-				<h1 class="centro">Nova Editora</h1>
-				<div class="jumbotron">
-					<table>
-						<tr>
-							<td>Id</td>
-							<td>Editora</td>
-						</tr>
-						<tr>
-							<td><%= publisher.id%>  </td>
-							<td><%= publisher.name %>  </td>
-						</tr>
-					</table>
-				</div>
-	</main>		
-	<footer>
-		<%- include('../partials/footer') %> 
-	</footer>
+<html lang="pt-br">
+  <head>
+    <%- include('../partials/head') %>
+  </head>
+  <body>
+    <header>
+        <%- include('../partials/header') %>
+    </header>
+    <main>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-8">
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title centro">Editora</h5>
+              </div>
+              <div class="card-body">
+                <div class="row justify-content-md-center">
+                  <div class="col-sm-2"></div>
+                  <div class="col-sm-auto">
+                    <p>Id: <%= publisher.id%> </p> 
+                    <p>Editora: <%= publisher.name %></p>
+                  </div>
+                  <div class="col-sm-2"></div>
+                </div>
+              </div>
+            </div>
+			    </div>
+        </div>
+        <div class="row" style="margin-top: 20px;">
+          <div class="col-sm"></div>
+          <div class="col-sm-auto">
+            <a href="/editoras" class="btn btn-primary">Voltar</a>
+          </div>
+          <div class="col-sm"></div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <%- include('../partials/footer') %> 
+    </footer> 
 	</body>
-</html>
+  </html>

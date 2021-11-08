@@ -4,7 +4,9 @@ module.exports.publisher = function(application, req, res) {
   var connection = application.config.dbConnection;
   var publishersModel = new application.app.models.publishersModel(connection);
 
-  publishersModel.getPublisher(function(error, result){
+  var publisher = req.query;
+
+  publishersModel.getPublisher(publisher, function(error, result){
     res.render("publishers/publisher", {publisher: result.rows[0]});
   })
 }

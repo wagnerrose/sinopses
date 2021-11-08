@@ -1,32 +1,47 @@
-<!DOCTYPE html>
-	<html lang="pt-br">
-		<head>
-			<%- include('../partials/head') %>
-			<style>
-			</style>
-		</head>
-	<body>
-		<header>
-				<%- include('../partials/header') %>
-		</header>
-		<main>
-			<div class="container-fluid">
-				<h1 class="centro">Nova Categoria</h1>
-				<div class="jumbotron">
-					<table>
-						<tr>
-							<td>Id</td>
-							<td>Categoria</td>
-						</tr>
-						<tr>
-							<td><%= category.id%>  </td>
-							<td><%= category.name %>  </td>
-						</tr>
-					</table>
-				</div>
-	</main>		
-	<footer>
-		<%- include('../partials/footer') %> 
-	</footer>
+<html lang="pt-br">
+  <head>
+    <%- include('../partials/head') %>
+  </head>
+  <body>
+    <header>
+        <%- include('../partials/header') %>
+    </header>
+    <main>
+      <div class="container-fluid">
+        <div class="jumbotron">
+          <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+              <div class="card">
+                <div class="card-header">
+                  <h2 class="card-title centro">Categoria</h5>
+                </div>
+                <div class="card-body">
+                  <div class="row justify-content-md-center">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-auto">
+                      <p>Id: <%= category.id%> </p> 
+                      <p>Categoria: <%= category.category %></p>
+                    </div>
+                    <div class="col-sm-2"></div>
+                  </div>
+                </div>
+              </div>
+            <div class="col-sm-2"></div>
+          </div>
+        </div>
+        <div class="row" style="margin-top: 20px;">
+          <div class="col-sm"></div>
+          <div class="col-sm-auto">
+            <a href="/categorias" class="btn btn-primary">Voltar</a>
+          </div>
+          <div class="col-sm"></div>
+        </div>
+      </div>
+	  </div>
+    </main>
+    <footer>
+      <%- include('../partials/footer') %> 
+    </footer> 
 	</body>
 </html>

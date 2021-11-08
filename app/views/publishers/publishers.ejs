@@ -19,22 +19,23 @@
                   <tr>
                     <th>ID</th>
                     <th>Editora</th>
+					          <th>Ação</th>
                   </tr>
                 </thead>
                 <tbody>
                   <% for( let i = 0; i < publishers.length; i++ ) { %>
                     <tr>
                       <td><%= publishers[i].id %> </td>
-                      <td><%= publishers[i].name %> </td>
+                      <td><a href="/editora?id=<%= publishers[i].id %>"><%= publishers[i].name %> </a></td>
+					            <td> </td>
                     </tr>		     
                   <% } %>
                 </tbody>
-								</table>
-								<br><br>
-								<div class="col">
-									<a href="/" class="btn btn-primary btn-sm" tabindex="-1" role="button" aria-disabled="true">Home</a>
-									<a href="/form_add_publisher" class="btn btn-primary btn-sm" tabindex="-1" role="button" aria-disabled="true">Nova Editora</a>
-								</div>
+							</table>
+              <div class="col" style="margin-top: 20px;">
+                <a href="/" class="btn btn-primary btn-sm" tabindex="-1" role="button" aria-disabled="true">Home</a>
+                <a href="/form_add_publisher" class="btn btn-primary btn-sm" tabindex="-1" role="button" aria-disabled="true">Nova Editora</a>
+              </div>
 						</div>
 						<div class="col col-sm"></div>
 					</div>

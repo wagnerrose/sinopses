@@ -5,8 +5,8 @@ Publishers.prototype.getPublishers = function(callback){
   this._client.query('select * from publishers', callback);
 };
 
-Publishers.prototype.getPublisher = async function(callback){
-  await this._client.query('select * from publishers where id = 1', callback);
+Publishers.prototype.getPublisher = async function(publisher, callback){
+  await this._client.query('select * from publishers where id = ' + publisher.id, callback);
 };
 
 Publishers.prototype.savePublisher = function(publisher, callback){

@@ -13,7 +13,9 @@ module.exports.author = function(application, req, res){
   var connection = application.config.dbConnection;
   var authorsModel = new application.app.models.authorsModel(connection);
 
-  authorsModel.getAuthor(function(error, result){
+  var author = req.query;
+
+  authorsModel.getAuthor(author, function(error, result){
     res.render("authors/author", {author: result.rows[0]});
   })
 }

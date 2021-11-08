@@ -1,35 +1,53 @@
-<!DOCTYPE html>
-	<html lang="pt-br">
-		<head>
-			<meta charset="utf-8"/>
-			<title>Livro</title>
-		</head>
-	<body>
-
-		<h1>Livro</h1>
-		<table>
-			<tr>
-				<td>Id</td>
-				<td>Título</td>
-				<td>Id do autor</td>
-				<td>Id do editor</td>
-				<td>Id da sinopse</td>
-				<td>Data de publicação</td>
-				<td>Categoria</td>
-				<td>ISBN 13</td>
-				<td>Link de Imagem</td>
-			</tr>
-			<tr>
-				<td><%= book.id%>  </td>
-				<td><%= book.title %>  </td>
-				<td><%= book.authorid %> </td>
-				<td><%= book.publisherid%>  </td>
-				<td><%= book.synopseid %>  </td>
-				<td><%= book.publisheddate.toLocaleDateString ()%>  </td>
-				<td><%= book.categories %> </td>
-				<td><%= book.isbn_13%>  </td>
-				<td><%= book.imageLink %>  </td>			
-			</tr>
-		</table>
+<html lang="pt-br">
+  <head>
+    <%- include('../partials/head') %>
+  </head>
+  <body>
+    <header>
+        <%- include('../partials/header') %>
+    </header>
+    <main>
+      <div class="container-fluid">
+        <div class="jumbotron">
+          <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+              <div class="card">
+                <div class="card-header">
+                  <h2 class="card-title centro">Livro</h5>
+                </div>
+                <div class="card-body">
+                  <div class="row justify-content-md-center">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-auto">
+					  <!-- <p><%= book.imageLink %>  </p> -->
+					  <p>ID:<%= book.id%>  </p>
+					  <p>Título: <%= book.title %>  </p>
+					  <p>Autor: <%= book.author %> </p>
+					  <p>Editora: <%= book.publisher%>  </p>
+					  <p>Publicado em: <%= book.publisheddate.toLocaleDateString ()%>  </p>
+					  <p>Categoria: <%= book.category %> </p>
+					  <p>ISBN: <%= book.isbn_13%>  </p>
+					  <p>Sinopse: <%= book.synopsis %>  </p>	
+                    </div>
+                    <div class="col-sm-2"></div>
+                  </div>
+                </div>
+              </div>
+            <div class="col-sm-2"></div>
+          </div>
+        </div>
+        <div class="row" style="margin-top: 20px;">
+          <div class="col-sm"></div>
+          <div class="col-sm-auto">
+            <a href="/livros" class="btn btn-primary">Voltar</a>
+          </div>
+          <div class="col-sm"></div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <%- include('../partials/footer') %> 
+    </footer> 
 	</body>
-</html>
+  </html>

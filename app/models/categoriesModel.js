@@ -2,8 +2,8 @@ function Categories(connection){
   this._client = connection();
 }
 
-Categories.prototype.getCategory = function(callback){
-  this._client.query('select * from categories where id = 1', callback);
+Categories.prototype.getCategory = function(category,callback){
+  this._client.query('select * from categories where id = ' + category.id, callback);
 };
 
 Categories.prototype.getCategories = function(callback){

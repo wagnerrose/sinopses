@@ -2,8 +2,8 @@ function Authors(connection){
   this._client = connection();
 }
 
-Authors.prototype.getAuthor = function(callback){
-  this._client.query('select * from authors where id = 1', callback);
+Authors.prototype.getAuthor = function(author, callback){
+  this._client.query('select * from authors where id = ' + author.id, callback);
 };
 
 Authors.prototype.getAuthors = function(callback){

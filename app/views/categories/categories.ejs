@@ -28,7 +28,11 @@
                   <tr>
                     <td><%= categories[i].id %> </td>
                     <td><a href="/categoria?id= <%= categories[i].id %>"><%= categories[i].category %></a></td>
-                    <td></td>
+                    <td>
+											<a href="#">
+												<i class="fa fa-trash" style="color:crimson"></i><span style="color: crimson"> Apagar</span>
+											 </a>
+										</td>
                   </tr>		     
                 <% } %>
               </tbody>

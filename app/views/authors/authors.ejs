@@ -29,7 +29,11 @@
                     <td><%= authors[i].id %> </td>
                     <td><a href="/autor?id=<%= authors[i].id %>"> <%= authors[i].name %></a> </td>
                     <td><%= authors[i].birthdate.toLocaleDateString () %> </td>
-                    <td></td>
+                    <td>
+											<a href="#">
+												<i class="fa fa-trash" style="color:crimson"></i><span style="color: crimson"> Apagar</span>
+											 </a>
+										</td>
                   </tr>
                 </tbody>		     
 							<% } %>

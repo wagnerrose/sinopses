@@ -21,4 +21,5 @@ module.exports = function(application) {
     function(req,res){
      application.app.controllers.publishers.publisher_save(application, req, res);
   });
+
 };  

@@ -9,6 +9,7 @@ module.exports.category = function(application, req, res){
     categoriesModel.getCategory(category,function(error, result){
       res.render("categories/category", {category: result.rows[0]});
     })
+    categoriesModel.close;
 };
 
 module.exports.categories = function(application, req, res){
@@ -38,4 +39,15 @@ module.exports.category_save = function(application, req, res){
     categoriesModel.saveCategory(category, function(error, result){
       res.redirect("/categorias");
     });
+}
+
+module.exports.delete = function(application, req, res){
+  var connection = application.config.dbConnection;
+  var categoriesModel = new application.app.models.categoriesModel(connection);
+
+  var category = req.query.id;
+
+  categoriesModel.deleteCategory(category, function(error, result){
+    res.redirect("/categorias");
+  })
 }

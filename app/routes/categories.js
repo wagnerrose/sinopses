@@ -22,4 +22,8 @@ module.exports = function(application) {
     function(req,res){
       application.app.controllers.categories.category_save(application, req, res);
   });
+
+  application.get('/categoria/apagar', function(req, res) {
+    application.app.controllers.categories.delete(application, req, res);
+  });
 };  

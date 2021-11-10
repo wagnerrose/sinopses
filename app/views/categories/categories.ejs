@@ -2,7 +2,7 @@
 	<html lang="pt-br">
 		<head>
 			<%- include('../partials/head') %>
-
+			<%- include('../partials/headDataTable') %>
 		</head>
 	<body>
 		<header>
@@ -27,7 +27,7 @@
                 <% for( let i = 0; i < categories.length; i++ ) { %>
                   <tr>
                     <td><%= categories[i].id %> </td>
-                    <td><a href="/categoria?id= <%= categories[i].id %>" title="Edita Categoria" ><%= categories[i].category %></a></td>
+                    <td><a href="/categoria?id= <%= categories[i].id %>" title="Detalha/Edita Categoria" ><%= categories[i].category %></a></td>
                     <td>
 											<a href="/categoria/apagar?id=<%=categories[i].id %>" title="Apaga Categoria">
 												<i class="fa fa-trash" style="color:crimson"></i><span style="color: crimson"> Apagar</span>

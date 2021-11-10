@@ -1,14 +1,6 @@
 const {check, validationResult} = require('express-validator');
 
-module.exports.authors = function(application, req, res){
-    var connection = application.config.dbConnection;
-    var authorsModel = new application.app.models.authorsModel(connection);
-
-    authorsModel.getAuthors(function(error, result){
-      res.render("authors/authors", {authors: result.rows});
-    })
-}
-
+// Read one author
 module.exports.author = function(application, req, res){
   var connection = application.config.dbConnection;
   var authorsModel = new application.app.models.authorsModel(connection);
@@ -20,11 +12,22 @@ module.exports.author = function(application, req, res){
   })
 }
 
+// Read all authors
+module.exports.authors = function(application, req, res){
+  var connection = application.config.dbConnection;
+  var authorsModel = new application.app.models.authorsModel(connection);
 
+  authorsModel.getAuthors(function(error, result){
+    res.render("authors/authors", {authors: result.rows});
+  })
+}
+
+// Create
 module.exports.form_add_author = function(application, req, res){
   res.render('authors/form_add_author', {validator : undefined, author : {} });
 }
 
+// Save
 module.exports.author_save = function(application,req, res){
     var author = req.body;
   
@@ -40,4 +43,21 @@ module.exports.author_save = function(application,req, res){
     authorsModel.saveAuthor(author, function(error, result){
       res.redirect("/autores");
     });
+}
+
+// Delete
+module.exports.delete = function(application, req, res){
+  var connection = application.config.dbConnection;
+  var authorsModel = new application.app.models.authorsModel(connection);
+
+  var author = req.query;
+
+  authorsModel.deleteAuthor(author, function( error, result){
+    if(error) {
+      console.log(error.stack)
+    } else {
+      console.log(result)
+    }
+    res.redirect('/autores');
+  });
 }

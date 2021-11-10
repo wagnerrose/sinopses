@@ -2,6 +2,7 @@
 	<html lang="pt-br">
 		<head>
 			<%- include('../partials/head') %>
+			<%- include('../partials/headDataTable') %>
 		</head>
 	<body>
 		<header>
@@ -26,9 +27,9 @@
                   <% for( let i = 0; i < publishers.length; i++ ) { %>
                     <tr>
                       <td><%= publishers[i].id %> </td>
-                      <td><a href="/editora?id=<%= publishers[i].id %>" title="Edita Editora" ><%= publishers[i].name %> </a></td>
+                      <td><a href="/editora?id=<%= publishers[i].id %>" title="Detalha/Edita Editora" ><%= publishers[i].name %> </a></td>
 					            <td>
-												<a href="#" title="Apaga Editora">
+												<a href="/editora/apagar?id=<%=publishers[i].id %>" title="Apaga Editora">
 													<i class="fa fa-trash" style="color:crimson"></i><span style="color: crimson"> Apagar</span>
 									 			</a>
 											</td>

@@ -2,6 +2,7 @@
 	<html lang="pt-br">
 		<head>
 			<%- include('../partials/head') %>
+			<%- include('../partials/headDataTable') %>
 		</head>
 	<body>
 		<header>
@@ -29,7 +30,7 @@
                   <tbody>
                     <tr>
                       <td><%= books[i].id %> </td>
-                      <td><a href="/livro?id=<%= books[i].id %>" title="Edita Livro"> <%= books[i].title %></a> </td>
+                      <td><a href="/livro?id=<%= books[i].id %>" title="Detalha/Edita Livro"> <%= books[i].title %></a> </td>
                       <td><%= books[i].author %> </td>
                       <td><%= books[i].publisher %> </td>
                       <td><%= books[i].category %> </td>

@@ -45,9 +45,9 @@ module.exports.delete = function(application, req, res){
   var connection = application.config.dbConnection;
   var categoriesModel = new application.app.models.categoriesModel(connection);
 
-  var category = req.query.id;
+  var category = req.query;
 
-  categoriesModel.deleteCategory(category, function(error, result){
+  categoriesModel.deleteCategory(category, function(error, result){ 
     res.redirect("/categorias");
   })
 }

@@ -2,10 +2,11 @@
 	<html lang="pt-br">
 		<head>
 			<%- include('../partials/head') %>
+			<%- include('../partials/headDataTable') %>
 		</head>
 	<body>
 		<header>
-				<%- include('../partials/header') %>
+			<%- include('../partials/header') %>
 		</header>
 		<main>
 			<div class="container-fluid">
@@ -27,10 +28,10 @@
                 <tbody>
                   <tr>
                     <td><%= authors[i].id %> </td>
-                    <td><a href="/autor?id=<%= authors[i].id %>" title="Edita Autor" > <%= authors[i].name %></a> </td>
+                    <td><a href="/autor?id=<%= authors[i].id %>" title="Detalha/Edita Autor" > <%= authors[i].name %></a> </td>
                     <td><%= authors[i].birthdate.toLocaleDateString () %> </td>
                     <td>
-											<a href="#" title="Apaga Autor">
+											<a href="/autor/apagar?id=<%= authors[i].id %>" title="Apaga Autor">
 												<i class="fa fa-trash" style="color:crimson"></i><span style="color: crimson"> Apagar</span>
 											 </a>
 										</td>

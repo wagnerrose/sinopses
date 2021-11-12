@@ -52,12 +52,22 @@ module.exports.delete = function(application, req, res){
 
   var author = req.query;
 
-  authorsModel.deleteAuthor(author, function( error, result){
-    if(error) {
-      console.log(error.stack)
+  authorsModel.findBooks(author, function(error, result){
+    // if exists books can't delete it
+    console.log(result.rows[0].count);
+    if (result.rows[0].count>0) {
+      console.log("tem autor cadastrado em livros");
+      res.redirect('/autores');
     } else {
-      console.log(result)
+      console.log('Autor apagado.')
+      authorsModel.deleteAuthor(author, function( error, result){
+        if(error) {
+          console.log(error.stack)
+        } else {
+          console.log("Autor apagado.");
+        }
+        res.redirect('/autores');
+      });
     }
-    res.redirect('/autores');
   });
 }

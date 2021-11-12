@@ -1,5 +1,5 @@
 const {check, validationResult} = require('express-validator');
-
+// Read one category
 module.exports.category = function(application, req, res){
     var connection = application.config.dbConnection;
     var categoriesModel = new application.app.models.categoriesModel(connection);
@@ -12,6 +12,7 @@ module.exports.category = function(application, req, res){
     categoriesModel.close;
 };
 
+// Read all categories
 module.exports.categories = function(application, req, res){
     var connection = application.config.dbConnection;
     var categoriesModel = new application.app.models.categoriesModel(connection);
@@ -25,6 +26,7 @@ module.exports.form_add_category = function(application, req, res){
     res.render('categories/form_add_category', {validator : undefined, category : {}});
 };
 
+// Save
 module.exports.category_save = function(application, req, res){
     var category = req.body;
     // validacao de dados
@@ -41,6 +43,7 @@ module.exports.category_save = function(application, req, res){
     });
 }
 
+// Delete
 module.exports.delete = function(application, req, res){
   var connection = application.config.dbConnection;
   var categoriesModel = new application.app.models.categoriesModel(connection);
@@ -49,5 +52,5 @@ module.exports.delete = function(application, req, res){
 
   categoriesModel.deleteCategory(category, function(error, result){ 
     res.redirect("/categorias");
-  })
+  });
 }

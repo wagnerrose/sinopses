@@ -10,61 +10,68 @@
 		<main>
 			<div class="container-fluid">
 				<h1 class="centro">Cadastro de Livro</h1>
-				<div class="jumbotron">
-					<div class="row">
-						<div class="col col-sm"></div>
-						<div class="col col-sm">				
+				<div class="row">
+					<div class="col col-sm"></div>
+					<div class="col col-sm">
+						<div class="jumbotron">				
 							<div action="/books/save" method="post">
 								<div class="form-group">
-										<label for="book">Nome do Livro</label>
-										<input type="text" class="form-control" id="book" name="book" placeholder= "Informe o nome compleo do livro"/>
+									<label for="book">Nome do Livro</label>
+									<input type="text" class="form-control" id="title" name="title" value="<%= book.title %>" placeholder= "Informe o nome compleo do livro"/>
+									
 									<label class="form-label" for="author">Autor:</label>
-									<select class="form-select form-control" id="author" name="author">
+									<select class="form-select form-control" id="authorid" name="authorid" value="<%= book.authorid%>"
 										<option selected>Selecione o autor</option>
 										<% for(let i =0; i < authors.length; i++) {%>
 											<option value="<%= authors[i].id %>"><%= authors[i].name%></option>
 										<% } %> 
 									</select>
+
 									<label for="publisher">Editora:</label>
-									<select class="form-select form-control" id="publisher" name="publisher">
+									<select class="form-select form-control" id="publisherid" name="publisherid" value="<%= book.publisherid%>">
 										<option selected>Selecione a Editora</option>
 										<% for(let i =0; i < publishers.length; i++) {%>
 											<option value="<%= publishers[i].id %>"><%= publishers[i].name%></option>
 										<% } %> 
 									</select>
+
 									<label for="publisheddate">Data de publicação:</label>
-									<input class="form-control" type="date" id="publisheddate" name="publisheddate">
+									<input class="form-control" type="date" id="publisheddate" name="publisheddate" value="<%= book.publisheddate%>">
+
 									<label for="category">Categoria:</label>
-									<select class="form-select form-control" id="category" name="category">
+									<select class="form-select form-control" id="categoriesid" name="categoriesid" value="<%= book.categoriesid%>">
 										<option selected>Selecione a categoria</option>
 										<% for(let i =0; i < categories.length; i++) {%>
 											<option value="<%= categories[i].id %>"><%= categories[i].category%></option>
 										<% } %> 
-									</select>					
 									</select>
-						
+
 									<label for="isbn_13">Código ISBN-13:</label>
-									<input class="form-control" type="number" id="isbn_13" name="isbn_13">
+									<input class="form-control" type="number" id="isbn_13" name="isbn_13" value="<%= book.isbn_13 %>">
+
 									<label for="sinopsis">Sinopse:</label>
-									<textarea name="sinopsis" rows="5" cols="60">
+									<textarea name="sinopsis" rows="5" cols="60" value="<%= book.sinopsisid%>" >
 										O livro comenta sobre ....
 									</textarea>
+
 									<label for="imageLink">Link da Imagem de capa:</label>
-									<input class="form-control" type="url" id="imageLink" name="imageLink">
-									<br>
-									<div class="row">
-										<div class="col">
-											<input class="btn btn-primary btn-sm" type="submit" value="Submit">
+									<input class="form-control" type="url" id="imageLink" name="imageLink" value="<%= book.imagelink%>" >
+
+									<div class="row" style="margin-top: 20px;">
+										<div class="col-sm"></div>
+										<div class="col-sm-auto">
+											<input class="btn btn-primary btn-sm" type="submit" value="Salva">
 											<a href="/livros" class="btn btn-danger btn-sm" tabindex="-1" role="button" aria-disabled="true">Cancela</a>
 										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col col-sm"></div>
-					</div>
-				</div>
-			</div>
+										<div class="col-sm"></div>
+									</div><!-- div botoes -->
+								</div> <!--div form group-->
+							</div> <!-- div action-->
+						</div> <!--div jumbotron-->
+					</div><!--div col-->
+					<div class="col col-sm"></div>
+				</div><!--div row -->
+			</div><!-- div container-fluid-->
 		</main>
 		<footer>
 			<%- include('../partials/footer') %> 

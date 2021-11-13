@@ -16,9 +16,16 @@ Books.prototype.getBook =  async function(book, callback){
   sql += "inner join categories as ct ";
   sql += "on bk.categoriesid = ct.id ";
   sql += "where bk.id = " + book.id + ";";
-  console.log(sql);
   await this._client.query(sql, callback);
 };
+
+Books.prototype.findBook =  async function(book, callback){
+  var sql = "SELECT * FROM books "
+  sql += "WHERE id = " + book.id + ";";
+  await this._client.query(sql, callback);
+  await this._client.end();
+};
+
 
 // Get all Books
  Books.prototype.getBooks = async function(callback){
@@ -33,12 +40,14 @@ Books.prototype.getBook =  async function(book, callback){
   sql += "inner join categories as ct ";
   sql += "on bk.categoriesid = ct.id;"
   await this._client.query(sql, callback);
+  await this._client.end();
 };
 
 // Save one Book
 Books.prototype.saveBook =  async function(book, callback){
   const sql = 'INSERT INTO books(title, authorid, publisherid, publisheddate, category, isbn_13, imagelink) VALUES ($1, $2, $3, $4, $5, $6, $8);';
   await this._client.query(sql, [book.title, book.authorid, book.publisherid, book.publisheddate, book.category, book.isbn_13, book.imagelink], callback);
+  await this._client.end();
 };
 
 // Close connection

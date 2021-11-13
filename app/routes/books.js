@@ -12,9 +12,14 @@ module.exports = function(application) {
   });
 
   // Create one Book
-  application.get('/form_add_book', async function(req,res){
+  application.get('/novo_livro', async function(req,res){
     application.app.controllers.books.create(application, req, res);
   });
+
+    // Create one Book
+    application.get('/edita_livro', async function(req,res){
+      application.app.controllers.books.create( application, req, res);
+    });
 
   // Save one Book
   application.post('/books/save', function(req,res){
@@ -22,7 +27,8 @@ module.exports = function(application) {
     var connection = application.config.dbConnection;
     var booksModel = new application.app.models.booksModel(connection);
 
-    booksModel.saveBooks(book, function(error, result){
+    console.log('modelo book:', book);
+    booksModel.saveBook(book, function(error, result){
       res.redirect("/livros");
     });
   });

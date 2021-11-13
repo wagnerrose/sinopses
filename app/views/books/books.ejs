@@ -11,48 +11,51 @@
 		<main>
 			<div class="container-fluid">
 				<h1 class="centro" >Relação de Livros</h1>
-				<div class="jumbotron">
 					<div class="row">
-						<div class="col col-sm-2"></div>
-						<div class="col col-sm-8">
-							<table class="table table-hover" id="tabela">
-								<thead class="thead-dark">
-									<tr>
-										<th>ID</th>
-										<th>Título</th>
-										<th>Autor</th>
-										<th>Editora</th>
-										<th>Categoria</th>
-                    <th>Ação</th>
-									</tr>
-							  </thead>
-								<% for( let i = 0; i < books.length; i++ ) { %>
-                  <tbody>
-                    <tr>
-                      <td><%= books[i].id %> </td>
-                      <td><a href="/livro?id=<%= books[i].id %>" title="Detalha/Edita Livro"> <%= books[i].title %></a> </td>
-                      <td><%= books[i].author %> </td>
-                      <td><%= books[i].publisher %> </td>
-                      <td><%= books[i].category %> </td>
-                      <td>
-												<a href="#" title="Apaga Livro">
-													<i class="fa fa-trash" style="color:crimson"></i><span style="color: crimson"> Apagar</span>
-									 			</a>
-											</td>
-									  </tr>
-                  </tbody>	     
-								<% } %>
-							</table>
-							<br><br>
-							<div class="col">
-								<a href="/" class="btn btn-primary btn-sm" tabindex="-1" role="button" aria-disabled="true">Home</a>
-								<a href="/form_add_book" class="btn btn-primary btn-sm" tabindex="-1" role="button" aria-disabled="true">Novo Livro</a>
-							</div>
-						</div>
-						<div class="col col-sm-2"></div>
-					</div>
-				</div>
-			</div>
+						<div class="col col-sm"></div>
+						<div class="col col-sm-10">
+							<div class="jumbotron">
+								<table class="table table-hover" id="tabela">
+									<thead class="thead-dark">
+										<tr>
+											<th>ID</th>
+											<th>Título</th>
+											<th>Autor</th>
+											<th>Editora</th>
+											<th>Categoria</th>
+											<th>Ação</th>
+										</tr>
+									</thead>
+									<tbody>
+										<% for( let i = 0; i < books.length; i++ ) { %>
+											<tr>
+												<td><%= books[i].id %> </td>
+												<td><a href="/livro?id=<%= books[i].id %>" title="Detalha/Edita Livro"> <%= books[i].title %></a> </td>
+												<td><%= books[i].author %> </td>
+												<td><%= books[i].publisher %> </td>
+												<td><%= books[i].category %> </td>
+												<td>
+													<a href="#" class='confirmation' title="Apaga Livro">
+														<i class="fa fa-trash" style="color:crimson"></i><span style="color: crimson"> Apagar</span>
+													</a>
+												</td>
+											</tr>
+										<% } %>
+									</tbody>	     
+								</table>
+								<div class="row" style="margin-top: 20px;">
+									<div class="col-sm"></div>
+									<div class="col-sm-auto">
+										<a href="/" class="btn btn-primary btn-sm" tabindex="-1" role="button" aria-disabled="true">Home</a>
+										<a href="/form_add_book" class="btn btn-primary btn-sm" tabindex="-1" role="button" aria-disabled="true">Novo Livro</a>
+									</div>
+									<div class="col-sm"></div>
+								</div> <!-- div botoes-->
+							</div> <!-- div jumbotron-->
+						</div> <!-- div col-->
+						<div class="col col-sm"></div>
+					</div> <!--div row-->
+				</div> <!--div container-fluid-->
 		</main>
 		<footer>
 			<%- include('../partials/footer') %> 

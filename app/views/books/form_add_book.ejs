@@ -21,46 +21,26 @@
 									<label class="form-label" for="author">Autor:</label>
 									<select class="form-select form-control" id="author" name="author">
 										<option selected>Selecione o autor</option>
-										<option value="3">Monteiro Lobato</option>
-										<option value="4">José de Alencar</option>
-										<option value="5">Cecília Meireles</option>
-										<option value="6">Carlos Drummond de Andrade</option>
+										<% for(let i =0; i < authors.length; i++) {%>
+											<option value="<%= authors[i].id %>"><%= authors[i].name%></option>
+										<% } %> 
 									</select>
 									<label for="publisher">Editora:</label>
 									<select class="form-select form-control" id="publisher" name="publisher">
 										<option selected>Selecione a Editora</option>
-										<option value="1">Companhia da Letras</option>
-										<option value="2">Aleph</option>
-										<option value="3">Suma</option>
-										<option value="4">Editora Intrínseca</option>
-										<option value="4">Grupo Editorial Record</option>
-										<option value="5">Editora Rocco</option>
-										<option value="6">Globo Livros</option>
-										<option value="7">Darkside Books</option>
-										<option value="8">Harper Collins</option>
-										<option value="9">Editora Arqueiro</option>
-										<option value="10">Leya</option>
-										<option value="11">Saraiva</option>
-										<option value="12">FTD</option>
+										<% for(let i =0; i < publishers.length; i++) {%>
+											<option value="<%= publishers[i].id %>"><%= publishers[i].name%></option>
+										<% } %> 
 									</select>
 									<label for="publisheddate">Data de publicação:</label>
 									<input class="form-control" type="date" id="publisheddate" name="publisheddate">
 									<label for="category">Categoria:</label>
 									<select class="form-select form-control" id="category" name="category">
 										<option selected>Selecione a categoria</option>
-										<option value="1">Biografias </option>
-										<option value="2">Folclore </option>
-										<option value="3">Literatura Brasileira </option>
-										<option value="4">Genealogia </option>
-										<option value="5">Humor</option>
-										<option value="6">Infanto juvenis </option>
-										<option value="7"> Manuscritos </option>
-										<option value="8">Poesia</option>
-										<option value="9">Artes</option>
-										<option value="10">Ciências Exatas</option>
-										<option value="11">História do Brasil</option>
-										<option value="12">Moda</option>
-										<option value="13">Sociologia</option>
+										<% for(let i =0; i < categories.length; i++) {%>
+											<option value="<%= categories[i].id %>"><%= categories[i].category%></option>
+										<% } %> 
+									</select>					
 									</select>
 						
 									<label for="isbn_13">Código ISBN-13:</label>
@@ -75,7 +55,7 @@
 									<div class="row">
 										<div class="col">
 											<input class="btn btn-primary btn-sm" type="submit" value="Submit">
-											<a href="/editoras" class="btn btn-danger btn-sm" tabindex="-1" role="button" aria-disabled="true">Cancela</a>
+											<a href="/livros" class="btn btn-danger btn-sm" tabindex="-1" role="button" aria-disabled="true">Cancela</a>
 										</div>
 									</div>
 								</div>

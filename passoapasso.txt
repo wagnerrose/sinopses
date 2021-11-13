@@ -159,31 +159,3 @@ ALTER TABLE synopses ADD COLUMN bookid INTEGER REFERENCES books(id) ON DELETE CA
 ALTER TABLE synopses ADD CONSTRAINT fk_books FOREIGN KEY (booksid) REFERENCES books(id) ON DELETE CASCADE;
 ###### necessário habilitar para q o constraint funcione por sessão
 PRAGMA foreign_keys=on;
-
- CREATE SEQUENCE publishers_id_seq
-    INCREMENT 1
-    MINVALUE 1
-    MAXVALUE 9223372036854775807
-    START 1
-    CACHE 1;
-
-
-
-    Biografias
-    Coleções
-    Comportamento
-    Contos
-    Crítica Literária
-    Ficção Científica
-    Folclore
-    Genealogia
-    Humor
-    Infanto juvenis
-    Jogos
-    Jornais
-    Literatura Brasileira
-    Literatura Estrangeira
-    Livros Raros
-    Manuscritos
-    Poesia
-    Outros Assuntos 

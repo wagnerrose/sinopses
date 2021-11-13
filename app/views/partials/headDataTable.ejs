@@ -5,7 +5,7 @@
 <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script>
   $(document).ready( function () {
-    $('#tabela').DataTable({
+    var tabela = $('#tabela').DataTable({
       "pageLength": 10,
       language: {
         "emptyTable": "Nenhum registro encontrado",
@@ -211,5 +211,7 @@
         "decimal": ","
       }
     });
+
   } );
-</script> 
+</script>
+

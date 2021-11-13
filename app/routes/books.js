@@ -13,18 +13,7 @@ module.exports = function(application) {
 
   // Create one Book
   application.get('/form_add_book', async function(req,res){
-    // categories
-    // authors
-    // publishers
-    var connection = application.config.dbConnection;
-    var categoriesModel = new application.app.models.categoriesModel(connection);
-    var authorsModel = new application.app.models.authorsModel(connection);
-    var publishersModel = new application.app.models.publishersModel(connection);
-    
-    var categories = await categoriesModel.getCategories();
-    console.log('as categorias são', categories);
-
-    res.render('books/form_add_book');
+    application.app.controllers.books.create(application, req, res);
   });
 
   // Save one Book

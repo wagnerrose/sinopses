@@ -18,7 +18,7 @@ module.exports.authors = function(application, req, res){
   var authorsModel = new application.app.models.authorsModel(connection);
 
   authorsModel.getAuthors(function(error, result){
-    res.render("authors/authors", {authors: result.rows});
+    res.render("authors/authors", {validator : undefined, authors: result.rows});
   })
 }
 
@@ -46,28 +46,25 @@ module.exports.author_save = function(application,req, res){
 }
 
 // Delete
-module.exports.delete = function(application, req, res){
+module.exports.delete = async function(application, req, res){
   var connection = application.config.dbConnection;
   var authorsModel = new application.app.models.authorsModel(connection);
-
   var author = req.query;
 
   authorsModel.findBooks(author, function(error, result){
     // if exists books can't delete it
-    console.log(result.rows[0].count);
-    if (result.rows[0].count>0) {
-      console.log("tem autor cadastrado em livros");
-      res.redirect('/autores');
+    console.log('achei livros como o autor: ',result.rowCount);
+    if (result.rowCount > 0) {
+      var validator = 'Existem livros contendo o Autor';
     } else {
-      console.log('Autor apagado.')
       authorsModel.deleteAuthor(author, function( error, result){
         if(error) {
           console.log(error.stack)
-        } else {
-          console.log("Autor apagado.");
-        }
-        res.redirect('/autores');
+        };
       });
     }
+    authorsModel.getAuthors(function(error, result){
+      res.render("authors/authors", {validator : validator, authors: result.rows});
+    });
   });
 }

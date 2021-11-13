@@ -2,19 +2,27 @@ function Synopses (connection) {
   this._client = connection();
 }
 // Get one Synopsis
-Synopses.prototype.getSynopses = function(callback){
+Synopses.prototype.getSynopses = async function(callback){
   this._client.query('select * from synopses', callback);
+  await this._client.end();
 };
 
 // Get all Synopses
 Synopses.prototype.getSynopsis = async function(callback){
   await this._client.query('select * from synopses where id = 1', callback);
+  await this._client.end();
 };
 
 // Save one Synopsis
-Synopses.prototype.saveSynopsis = function(synopsis, callback){
+Synopses.prototype.saveSynopsis = async function(synopsis, callback){
   const sql = 'INSERT INTO synopses (name) VALUES ($1);';
   this._client.query(sql, [synopses.name], callback);
+  await this._client.end();
+};
+
+// Close connection
+Synopses.prototype.end =  async function(book, callback){
+  await this._client.end();
 };
 
 module.exports = function(){

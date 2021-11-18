@@ -3,25 +3,26 @@ function Books(connection) {
 };
 // Get one Book
 Books.prototype.getBook =  async function(book, callback){
-  var sql = "select bk.id , bk.title, bk.publisheddate, "
-  sql += "ath.name as author, pb.name as publisher, "
-  sql += "sn.description as synopsis, ct.category as category ";
-  sql += "from books as bk ";
-  sql += "inner join authors as ath ";
-  sql += "on bk.authorid = ath.id ";
-  sql += "inner join publishers as pb ";
-  sql += "on bk.publisherid = pb.id ";
-  sql += "inner join synopses as sn ";
-  sql += "on bk.synopsisid = sn.id ";
-  sql += "inner join categories as ct ";
-  sql += "on bk.categoriesid = ct.id ";
-  sql += "where bk.id = " + book.id + ";";
+  // uso de template string
+  let sql = `select bk.id , bk.title, bk.publisheddate, 
+     ath.name as author, pb.name as publisher, 
+     sn.description as synopsis, ct.category as category
+     from books as bk
+     inner join authors as ath
+     on bk.authorid = ath.id
+     inner join publishers as pb
+     on bk.publisherid = pb.id
+     inner join synopses as sn
+     on bk.synopsisid = sn.id
+     inner join categories as ct
+     on bk.categoriesid = ct.id
+     where bk.id = ${book.id};`;
   await this._client.query(sql, callback);
 };
 
 Books.prototype.findBook =  async function(book, callback){
-  var sql = "SELECT * FROM books "
-  sql += "WHERE id = " + book.id + ";";
+  let sql = `SELECT * FROM books
+    WHERE id = ${book.id};`;
   await this._client.query(sql, callback);
   await this._client.end();
 };
@@ -29,32 +30,26 @@ Books.prototype.findBook =  async function(book, callback){
 
 // Get all Books
  Books.prototype.getBooks = async function(callback){
-  var sql = "select bk.id , bk.title, ath.name as author, pb.name as publisher , sn.description as synopsis, ct.category as category ";
-  sql += "from books as bk ";
-  sql += "inner join authors as ath ";
-  sql += "on bk.authorid = ath.id ";
-  sql += "inner join publishers as pb ";
-  sql += "on bk.publisherid = pb.id ";
-  sql += "inner join synopses as sn ";
-  sql += "on bk.synopsisid = sn.id ";
-  sql += "inner join categories as ct ";
-  sql += "on bk.categoriesid = ct.id;"
+  let sql = `select bk.id , bk.title, ath.name as author, pb.name as publisher , sn.description as synopsis, ct.category as category
+   from books as bk
+   inner join authors as ath
+   on bk.authorid = ath.id
+   inner join publishers as pb 
+   on bk.publisherid = pb.id
+   inner join synopses as sn
+   on bk.synopsisid = sn.id
+   inner join categories as ct
+   on bk.categoriesid = ct.id;`;
   await this._client.query(sql, callback);
   await this._client.end();
 };
 
 // Save one Book
 Books.prototype.saveBook =  async function(book, callback){
-  const sql = 'INSERT INTO books(title, authorid, publisherid, publisheddate, category, isbn_13, imagelink) VALUES ($1, $2, $3, $4, $5, $6, $8);';
+  let sql = 'INSERT INTO books(title, authorid, publisherid, publisheddate, category, isbn_13, imagelink) VALUES ($1, $2, $3, $4, $5, $6, $8);';
   await this._client.query(sql, [book.title, book.authorid, book.publisherid, book.publisheddate, book.category, book.isbn_13, book.imagelink], callback);
   await this._client.end();
 };
-
-// Close connection
-Books.prototype.end =  async function(book, callback){
-  await this._client.end();
-};
-
 
 module.exports = function() {
   return   Books;

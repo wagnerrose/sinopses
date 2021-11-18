@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+	<html lang="pt-br">
+		<head>
+			<%- include('../partials/head') %>
+		</head>
+	<body>
+		<header>
+				<%- include('../partials/header') %>
+		</header>
+		<main>
+			<div class="container-fluid">
+				<% if(validator !== undefined) {%>
+					<div class="alert alert-danger" role="alert">
+						<ul>
+							<% for( var i = 0; i < validator.errors.length; ++i) { %> 
+								<li>
+									<%= validator.errors[i].msg %>
+								</li>
+							<% } %> 
+						</ul>
+					</div>
+				<% } %> 				
+				<h1 class="centro">Cadastro de Editora</h1>
+				<div class="jumbotron">
+					<div class="row">
+						<div class="col col-sm"></div>
+						<div class="col col-sm">
+							<form action="/editora/<%= publisher.id %> " class="form-group" method="post">
+								<label for="fname">Nome:</label><br>
+								<input type="text" class="form-control" id="name" name="name" value="<%= publisher.name%>"><br>
+								<div class="row">
+									<div class="col">
+										<input class="btn btn-primary btn-sm" type="submit" value="Salva">
+										<a href="/editoras" class="btn btn-danger btn-sm" tabindex="-1" role="button" aria-disabled="true">Cancela</a>
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="col col-sm"></div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<footer>
+			<%- include('../partials/footer') %> 
+		</footer>
+	</body>
+</html>

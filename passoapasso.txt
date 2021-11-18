@@ -159,3 +159,41 @@ ALTER TABLE synopses ADD COLUMN bookid INTEGER REFERENCES books(id) ON DELETE CA
 ALTER TABLE synopses ADD CONSTRAINT fk_books FOREIGN KEY (booksid) REFERENCES books(id) ON DELETE CASCADE;
 ###### necessário habilitar para q o constraint funcione por sessão
 PRAGMA foreign_keys=on;
+
+
+
+############   Usando PM2 pra produção
+
+### configurando e instalando
+sudo npm install pm2 -g
+
+### configurar o package.json com o script de production
+....
+
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start" : "nodemon",
+    "production": "pm2 start app.js --name sinopses"
+  },
+
+  ....
+
+##### rodando em produção
+npm run production
+
+## será criada iniciada em produção a aplicação com nome sinopses
+
+
+# mostrar a situação do processo sinopses
+pm2 show sinopses
+
+# mostrado o status do PM2
+pm2 status
+
+# mostrando o monitor dos processos pm2
+pm2 monit
+
+# matar o pm2
+pm2 kill
+
+

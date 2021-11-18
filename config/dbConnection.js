@@ -1,6 +1,6 @@
 const { Pool } = require('pg');
 
-var connPostgres = function() {
+let connPostgres = function() {
   const credentials = {
     host: 'localhost',
     user: 'postgres',
@@ -8,7 +8,7 @@ var connPostgres = function() {
     database: 'snopses_development',
     port: 5432,
   };
-  var client = new Pool(credentials);
+  let client = new Pool(credentials);
   return client;
 }
 module.exports = function(){

@@ -22,10 +22,11 @@ module.exports.authors = function(application, req, res){
   })
 }
 
-// Create
+// Create and update
 module.exports.form_add_author = function(application, req, res){
   res.render('authors/form_add_author', {validator : undefined, author : {} });
 }
+
 
 // Save
 module.exports.author_save = function(application,req, res){

@@ -9,53 +9,66 @@
 		</header>
 		<main>
 			<div class="container-fluid">
+				<% console.log(validator);  %> 
+				<% if(validator !== undefined) {%>
+					<div class="alert alert-danger" role="alert">
+						<ul>
+							<% for( var i = 0; i < validator.errors.length; ++i) { %> 
+								<li>
+									<%= validator.errors[i].msg %>
+									<% console.log('deu esse erro ==>>', validator.errors[i].msg); %>
+								</li>
+							<% } %> 
+						</ul>
+					</div>
+				<% } %> 
 				<h1 class="centro">Cadastro de Livro</h1>
 				<div class="row">
 					<div class="col col-sm"></div>
 					<div class="col col-sm">
 						<div class="jumbotron">				
-							<div action="/books/save" method="post">
+							<div action="/books/create" method="post">
 								<div class="form-group">
 									<label for="book">Nome do Livro</label>
-									<input type="text" class="form-control" id="title" name="title" value="<%= book.title %>" placeholder= "Informe o nome compleo do livro"/>
+									<input type="text" class="form-control" id="title" name="title" placeholder= "Informe o nome compleo do livro">
 									
 									<label class="form-label" for="author">Autor:</label>
-									<select class="form-select form-control" id="authorid" name="authorid" value="<%= book.authorid%>"
-										<option selected>Selecione o autor</option>
+									<select class="form-select form-control" id="authorid" name="authorid" >
+										<option value="<%= book.authorid %>" selected>Selecione o autor</option>
 										<% for(let i =0; i < authors.length; i++) {%>
 											<option value="<%= authors[i].id %>"><%= authors[i].name%></option>
 										<% } %> 
 									</select>
 
-									<label for="publisher">Editora:</label>
-									<select class="form-select form-control" id="publisherid" name="publisherid" value="<%= book.publisherid%>">
+									<label class="form-label" for="publisher">Editora:</label>
+									<select class="form-select form-control" id="publisherid" name="publisherid" value="">
 										<option selected>Selecione a Editora</option>
 										<% for(let i =0; i < publishers.length; i++) {%>
 											<option value="<%= publishers[i].id %>"><%= publishers[i].name%></option>
 										<% } %> 
 									</select>
 
-									<label for="publisheddate">Data de publicação:</label>
-									<input class="form-control" type="date" id="publisheddate" name="publisheddate" value="<%= book.publisheddate%>">
+									<label class="form-label" for="publisheddate">Data de publicação:</label>
+									<input class="form-control" type="date" id="publisheddate" name="publisheddate" >
 
-									<label for="category">Categoria:</label>
-									<select class="form-select form-control" id="categoriesid" name="categoriesid" value="<%= book.categoriesid%>">
+									<label class="form-label" for="categories">Categoria:</label>
+									<select class="form-select form-control" id="categoriesid" name="categoriesid" >
 										<option selected>Selecione a categoria</option>
 										<% for(let i =0; i < categories.length; i++) {%>
 											<option value="<%= categories[i].id %>"><%= categories[i].category%></option>
 										<% } %> 
 									</select>
 
-									<label for="isbn_13">Código ISBN-13:</label>
-									<input class="form-control" type="number" id="isbn_13" name="isbn_13" value="<%= book.isbn_13 %>">
+									<label class="form-label" for="isbn_13">Código ISBN-13:</label>
+									<input class="form-control" type="number" id="isbn_13" name="isbn_13">
 
 									<label for="sinopsis">Sinopse:</label>
-									<textarea name="sinopsis" rows="5" cols="60" value="<%= book.sinopsisid%>" >
+									<textarea name="sinopsis" rows="5" cols="60" >
 										O livro comenta sobre ....
 									</textarea>
 
 									<label for="imageLink">Link da Imagem de capa:</label>
-									<input class="form-control" type="url" id="imageLink" name="imageLink" value="<%= book.imagelink%>" >
+									<input class="form-control" type="url" id="imageLink" name="imageLink" >
 
 									<div class="row" style="margin-top: 20px;">
 										<div class="col-sm"></div>

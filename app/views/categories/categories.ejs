@@ -27,9 +27,9 @@
 									<% for( let i = 0; i < categories.length; i++ ) { %>
 										<tr>
 											<td><%= categories[i].id %> </td>
-											<td><a href="/categoria?id= <%= categories[i].id %>" title="Detalha/Edita Categoria" ><%= categories[i].category %></a></td>
+											<td><a href="/categoria/mostra?id=<%= categories[i].id %>" title="Detalha/Edita Categoria" ><%= categories[i].category %></a></td>
 											<td>
-												<a href="/categoria/apagar?id=<%=categories[i].id %>" class='confirmation' title="Apaga Categoria">
+												<a href="/categoria/apaga?id=<%=categories[i].id %>" class='confirmation' title="Apaga Categoria">
 													<i class="fa fa-trash" style="color:crimson"></i><span style="color: crimson"> Apagar</span>
 												</a>
 											</td>
@@ -41,7 +41,7 @@
 								<div class="col-sm"></div>
 								<div class="col-sm-auto">
 									<a href="/" class="btn btn-primary btn-sm" tabindex="-1" role="button" aria-disabled="true">Home</a>
-									<a href="/form_add_category" class="btn btn-primary btn-sm" tabindex="-1" role="button" aria-disabled="true">Nova categoria</a>
+									<a href="/categoria" class="btn btn-primary btn-sm" tabindex="-1" role="button" aria-disabled="true">Nova categoria</a>
 								</div>
 								<div class="col-sm"></div>
 							</div> <!-- div botoes-->

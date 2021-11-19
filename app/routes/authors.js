@@ -9,7 +9,8 @@ module.exports = function(application) {
 
   // Lista todos autores
   application.get('/autores/lista', function(req,res){
-    application.app.controllers.authors.authors(application, req, res);
+    validator = undefined
+    application.app.controllers.authors.authors(validator, application, req, res);
   });
 
   // formulários de criação ou atualizacao autor

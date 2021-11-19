@@ -13,8 +13,6 @@ Authors.prototype.getAuthor = async function(author, callback){
   } catch (error) {
     console.error(error.stack);
     return false;
-  } finally {
-    await this._client.end();  // closes connection
   }
 };
 // Get all Authors
@@ -27,8 +25,6 @@ Authors.prototype.getAuthors = async function(callback){
   } catch (error) {
     console.error(error.stack);
     return false;
-  } finally {
-    await this._client.end();  // closes connection
   }
 };
 
@@ -42,44 +38,25 @@ Authors.prototype.create = async function(author, callback){
   } catch (error) {
     console.error(error.stack);
     return false;
-  } finally {
-    await this._client.end();  // closes connection
   }
 };
 
 // Update one author
 Authors.prototype.update = async function(author, callback){
   const sql = `UPDATE authors SET name = $1, birthdate = $2 WHERE id= $3;`;
-
+  console.log('update autor:', author)
   try {
     await this._client.query(sql, [author.name, author.birthdate, author.id], callback);
     return true;
   } catch (error) {
     console.error(error.stack);
     return false;
-  } finally {
-    await this._client.end();  // closes connection
   }
 };
 
 // Apaga um autor
 Authors.prototype.delete = async function(author, callback) {
-  const sql = `DELETE FROM authors WHERE id= ${author.id};`
-  console.log('passei delete ===>>');
-  // try {
-  //   await this._client.query(sql, callback);
-  //   return true;
-  // } catch (error) {
-  //   console.error(error.stack);
-  //   return false;
-  // } finally {
-  //   await this._client.end();  // closes connection
-  // }
-};
-
-// Pesquisa um autor
-Authors.prototype.findBooks = async function(author, callback) {
-  const sql = `SELECT * FROM  books where authorid=${author.id};`
+  const sql = `DELETE FROM authors WHERE id=${author.id};`
 
   try {
     await this._client.query(sql, callback);
@@ -87,8 +64,22 @@ Authors.prototype.findBooks = async function(author, callback) {
   } catch (error) {
     console.error(error.stack);
     return false;
+  }
+};
+
+// Pesquisa um autor
+Authors.prototype.findBooks = async function(author) {
+  const sql = `SELECT * FROM  books where authorid=${author.id};`
+
+  try {
+    result = await this._client.query(sql);
+    return result.rowCount
+  } catch (error) {
+    console.error(error.stack);
+    return false;
   };
 };
+
 // encerra conexao
 Authors.prototype.end = async function() {
   await this._client.end();

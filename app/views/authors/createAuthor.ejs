@@ -23,22 +23,25 @@
 					</div>
 				<% } %> 
 				<h1 class="centro">Cadastro de Autor</h1>
-				<div class="jumbotron">
 					<div class="row">
 						<div class="col col-sm"></div>
 						<div class="col col-sm">
+							<div class="jumbotron">
 							<form action="/autor/novo" class="form-group" method="post">
 								<label for="fname">Nome:</label><br>
 								<input type="text" class="form-control" id="name" name="name" value="<%= author.name %>"><br>
 								<label for="fname">Data de nascimento:</label><br>
 								<input type="date" class="form-control" id="birthdate" name="birthdate" value="<%= author.birthdate %>"><br>
-								<div class="row">
-									<div class="col">
+								<div class="row" >
+									<div class="col col-sm-4"></div>
+									<div class="col col-sm-4">
 										<input class="btn btn-primary btn-sm" type="submit" value="Salvar">
 										<a href="/autores/lista" class="btn btn-danger btn-sm" tabindex="-1" role="button" aria-disabled="true">Cancela</a>
 									</div>
-								</div>
+									<div class="col col-sm-4"></div>
+								</div><!-- div bottom-->
 							</form>
+							</div>
 						</div>
 						<div class="col col-sm"></div>
 					</div>

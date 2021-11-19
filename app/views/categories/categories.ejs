@@ -29,7 +29,7 @@
 											<td><%= categories[i].id %> </td>
 											<td><a href="/categoria/mostra?id=<%= categories[i].id %>" title="Detalha/Edita Categoria" ><%= categories[i].category %></a></td>
 											<td>
-												<a href="/categoria/apaga?id=<%=categories[i].id %>" class='confirmation' title="Apaga Categoria">
+												<a href="/categoria/apaga?id=<%=categories[i].id %>" class='confirmation' title="Apaga Categoria" onclick="return confirm('Tem certeza que deseja apagar?');">
 													<i class="fa fa-trash" style="color:crimson"></i><span style="color: crimson"> Apagar</span>
 												</a>
 											</td>

@@ -29,7 +29,7 @@
 											<td><%= publishers[i].id %> </td>
 											<td><a href="/editora/mostra?id=<%= publishers[i].id %>" title="Detalha/Edita Editora" ><%= publishers[i].name %> </a></td>
 											<td>
-												<a href="/editora/apagar?id=<%=publishers[i].id %>" class='confirmation' title="Apaga Editora">
+												<a href="/editora/apagar?id=<%=publishers[i].id %>" class='confirmation' title="Apaga Editora" onclick="return confirm('Tem certeza que deseja apagar?');">
 													<i class="fa fa-trash" style="color:crimson"></i><span style="color: crimson"> Apagar</span>
 												</a>
 											</td>

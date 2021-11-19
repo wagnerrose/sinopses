@@ -1,5 +1,5 @@
 <html lang="pt-br">
-  <head>
+  <head> 
     <%- include('../partials/head') %>
   </head>
   <body>
@@ -9,34 +9,36 @@
     <main>
       <div class="container-fluid">
         <div class="row">
-          <div class="col col-sm"></div>
-          <div class="col col-sm">
-            <div class="jumbotron">
+          <div class="col col-sm-4"></div>
+          <div class="col col-sm-4">
+            <div class="jumbotron" style="margin-bottom: 5px;">
             <div class="card">
               <div class="card-header">
                 <h2 class="card-title centro">Editora</h2>
               </div>
               <div class="card-body">
                 <div class="row justify-content-md-center">
-                  <div class="col col-sm"></div>
-                  <div class="col col-sm">
+                  <div class="col col-sm-2"></div>
+                  <div class="col col-sm-auto">
                     <p>Editora: <%= publisher.name %></p>
                   </div>
-                  <div class="col col-sm"></div>
+                  <div class="col col-sm-2"></div>
                 </div><!--div row card-body-->
               </div><!--div card-body-->
             </div><!--div card-->
+            <div class="row" style="margin-top: 20px;">
+              <div class="col-sm"></div>
+              <div class="col-sm">
+                <a href="/editora?id=<%= publisher.id %>" class="btn btn-primary btn-sm" tabindex="-1" role="button" aria-disabled="true">Edita</a>
+                <a href="/editoras/lista" class="btn btn-primary btn-sm">Voltar</a>
+              </div>
+              <div class="col-sm"></div>
+            </div>
           </div><!-- div jumbotron -->
+          <div class="col-sm-4"></div>
 			    </div><!--div col-sm-->
         </div>
-        <div class="row" style="margin-top: 20px;">
-          <div class="col-sm"></div>
-          <div class="col-sm">
-            <a href="/editora?id=<%= publisher.id %>" class="btn btn-primary btn-sm" tabindex="-1" role="button" aria-disabled="true">Edita</a>
-            <a href="/editoras/lista" class="btn btn-primary btn-sm">Voltar</a>
-          </div>
-          <div class="col-sm"></div>
-        </div>
+
       </div>
     </main>
     <footer>

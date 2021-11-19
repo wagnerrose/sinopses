@@ -60,8 +60,9 @@ module.exports.create = function(application, req, res){
 // update
 module.exports.update = function(application, req, res){
   let publisher = {} 
-  publisher.name = req.body.publisher;
+  publisher.name = req.body.name;
   publisher.id = req.params.id;
+
 
   // valida dados e retorna em caso de erro com mensagem
   const validator = validationResult(req);

@@ -27,7 +27,7 @@
 					<div class="row">
 						<div class="col col-sm"></div>
 						<div class="col col-sm">
-							<form action="/authors/save" class="form-group" method="post">
+							<form action="/autor/novo" class="form-group" method="post">
 								<label for="fname">Nome:</label><br>
 								<input type="text" class="form-control" id="name" name="name" value="<%= author.name %>"><br>
 								<label for="fname">Data de nascimento:</label><br>
@@ -35,7 +35,7 @@
 								<div class="row">
 									<div class="col">
 										<input class="btn btn-primary btn-sm" type="submit" value="Salvar">
-										<a href="/autores" class="btn btn-danger btn-sm" tabindex="-1" role="button" aria-disabled="true">Cancela</a>
+										<a href="/autores/lista" class="btn btn-danger btn-sm" tabindex="-1" role="button" aria-disabled="true">Cancela</a>
 									</div>
 								</div>
 							</form>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+	<html lang="pt-br">
+		<head>
+			<%- include('../partials/head') %>
+		</head>
+	<body>
+		<header>
+				<%- include('../partials/header') %>
+		</header>
+		<main>
+			<div class="container-fluid">
+				<div>
+					<% console.log(validator);  %> 
+					<% if(validator !== undefined) {%>
+						<div class="alert alert-danger" role="alert">
+							<ul>
+								<% for( var i = 0; i < validator.errors.length; ++i) { %> 
+									<li>
+										<%= validator.errors[i].msg %>
+										<% console.log('deu esse erro ==>>', validator.errors[i].msg); %>
+									</li>
+								<% } %> 
+							</ul>
+						</div>
+					<% } %> 
+					<h1 class="centro">Cadastro de Autor</h1>
+				</div> <!-- div alert-->
+				<div class="row">
+					<div class="col col-sm"></div>
+					<div class="col col-sm">
+						<div class="jumbotron">
+							<div>
+								<form action="/autor/<%=author.id %> " class="form-group" method="post">
+									<label for="fname">Nome:</label><br>
+									<input type="text" class="form-control" id="name" name="name" value="<%= author.name %>"><br>
+									<label for="fname">Data de nascimento:</label><br>
+									<input type="date" class="form-control" id="birthdate" name="birthdate" value="<%= author.birthdate.toISOString().split('T')[0] %>"><br>
+									<div class="row" style="margin-top: 10px;" >
+										<div class="col col-sm-4"></div>
+										<div class="col col-sm-4">
+											<input class="btn btn-primary btn-sm" type="submit" value="Salvar">
+											<a href="/autores/lista" class="btn btn-danger btn-sm" tabindex="-1" role="button" aria-disabled="true">Cancela</a>
+										</div>
+										<div class="col col-sm-4"></div>
+									</div><!-- div bottom-->
+								</form>
+						</div><!--div form-->
+					</div><!-- div jumbotron-->
+					</div><!-- div col-->
+					<div class="col col-sm"></div>
+				</div><!--div row-->
+			</div>
+			</div>
+		</main>
+		<footer>
+			<%- include('../partials/footer') %> 
+		</footer>
+	</body>
+</html>

@@ -1,35 +1,99 @@
-// const { author } = require("../controllers/authors");
 // Open connection
 function Authors(connection){
   this._client = connection();
-}
+};
+
 // Get one Author
 Authors.prototype.getAuthor = async function(author, callback){
-  await this._client.query(`SELECT * FROM authors WHERE id = ${author.id};`, callback);
-  await this._client.end();
+  const sql = `SELECT * FROM authors WHERE id = ${author.id};`;
+
+  try {
+    await this._client.query(sql, callback); // send query
+    return true;
+  } catch (error) {
+    console.error(error.stack);
+    return false;
+  } finally {
+    await this._client.end();  // closes connection
+  }
 };
 // Get all Authors
 Authors.prototype.getAuthors = async function(callback){
-  await this._client.query('SELECT * FROM authors', callback);
-  await this._client.end();
-};
-// Save one Author
-Authors.prototype.saveAuthor = async function(author, callback){
-  const sql = 'INSERT INTO authors(name, birthdate) VALUES ($1, $2);';
-  await this._client.query(sql, [author.name, author.birthdate], callback);
+  const sql = 'SELECT * FROM authors;';
+
+  try {
+    await this._client.query(sql, callback); // send query
+    return true;
+  } catch (error) {
+    console.error(error.stack);
+    return false;
+  } finally {
+    await this._client.end();  // closes connection
+  }
 };
 
-// Delete one Author
-Authors.prototype.deleteAuthor = async function(author, callback) {
+// Create one author
+Authors.prototype.create = async function(author, callback){
+  const sql = `INSERT INTO authors (name, birthdate) VALUES ($1, $2);`;
+
+  try {
+    await this._client.query(sql, [author.name, author.birthdate], callback); // send query
+    return true;
+  } catch (error) {
+    console.error(error.stack);
+    return false;
+  } finally {
+    await this._client.end();  // closes connection
+  }
+};
+
+// Update one author
+Authors.prototype.update = async function(author, callback){
+  const sql = `UPDATE authors SET name = $1, birthdate = $2 WHERE id= $3;`;
+
+  try {
+    await this._client.query(sql, [author.name, author.birthdate, author.id], callback);
+    return true;
+  } catch (error) {
+    console.error(error.stack);
+    return false;
+  } finally {
+    await this._client.end();  // closes connection
+  }
+};
+
+// Apaga um autor
+Authors.prototype.delete = async function(author, callback) {
   const sql = `DELETE FROM authors WHERE id= ${author.id};`
-  await this._client.query(sql, callback);
+  console.log('passei delete ===>>');
+  // try {
+  //   await this._client.query(sql, callback);
+  //   return true;
+  // } catch (error) {
+  //   console.error(error.stack);
+  //   return false;
+  // } finally {
+  //   await this._client.end();  // closes connection
+  // }
+};
+
+// Pesquisa um autor
+Authors.prototype.findBooks = async function(author, callback) {
+  const sql = `SELECT * FROM  books where authorid=${author.id};`
+
+  try {
+    await this._client.query(sql, callback);
+    return true;
+  } catch (error) {
+    console.error(error.stack);
+    return false;
+  };
+};
+// encerra conexao
+Authors.prototype.end = async function() {
+  await this._client.end();
 }
 
-// Find books with author
-Authors.prototype.findBooks = async function(author, callback) {
-  const sql = `SELECT * FROM  books where authorid = ${author.id};`
-  await this._client.query(sql, callback);
-}
 module.exports = function(){
   return Authors;
 }

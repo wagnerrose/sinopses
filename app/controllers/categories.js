@@ -55,7 +55,7 @@ module.exports.create = function(application, req, res){
     // cria novo registro
     categoriesModel.create(category, function(error, result){
       res.redirect("/categorias/lista");
-    });
+    }); 
 }
 
 // update

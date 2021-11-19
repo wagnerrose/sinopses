@@ -15,7 +15,7 @@ Categories.prototype.getCategory = async function(category,callback){
   }
 
 };
-
+ 
 // Get all Categories
 Categories.prototype.getCategories = async function(callback){
   sql = 'SELECT * FROM categories;';
@@ -61,8 +61,7 @@ Categories.prototype.update = async function(category, callback){
 
 // Delete one Category
 Categories.prototype.delete = async function(category, callback){
-  let sql = `DELETE FROM categories WHERE id = ${category.id}`;
-  console.log(sql)
+  let sql = `DELETE FROM categories WHERE id = ${category.id};`;
   try {
     await this._client.query(sql, callback);
     return true;

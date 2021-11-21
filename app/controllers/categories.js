@@ -79,7 +79,6 @@ module.exports.update = function(application, req, res){
   });
 }
 
-
 // Delete
 module.exports.delete = function(application, req, res){
   // Instancia o modelo

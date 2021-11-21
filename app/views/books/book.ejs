@@ -7,20 +7,20 @@
         <%- include('../partials/header') %>
     </header>
     <main>
+      <% console.log('view Livro ==>>', book) %> 
       <div class="container-fluid">
-        <div class="jumbotron">
-          <div class="row">
-            <div class="col-sm-2"></div>
-            <div class="col-sm-8">
+        <div class="row">
+          <div class="col col-sm-2"></div>
+          <div class="col col-sm-8">
+            <div class="jumbotron">
               <div class="card">
                 <div class="card-header">
                   <h2 class="card-title centro">Livro</h5>
                 </div>
                 <div class="card-body">
                   <div class="row justify-content-md-center">
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-8">
-                      <!-- <p><%= book.imageLink %>  </p> -->
+                    <div class="col col-sm-2"></div>
+                    <div class="col col-sm-8">
                       <p>ID:<%= book.id%>  </p>
                       <p>Título: <%= book.title %>  </p>
                       <p>Autor: <%= book.author %> </p>
@@ -30,18 +30,19 @@
                       <p>ISBN: <%= book.isbn_13%>  </p>
                       <p>Sinopse: <%= book.synopsis %>  </p>	
                     </div>
-                    <div class="col-sm-2"></div>
+                    <div class="col col-sm-2"></div>
                   </div>
-                </div>
-              </div>
-            <div class="col-sm-2"></div>
-          </div>
-        </div>
+                </div><!--div card-body -->
+              </div><!-- div card-->
+            </div><!-- div jumbotron-->
+          </div><!-- div col-sm-->
+          <div class="col col-sm-2"></div>
+        </div><!-- div row -->
         <div class="row" style="margin-top: 20px;">
           <div class="col-sm"></div>
           <div class="col-sm-auto">
-            <a href="/edita_livro?id=<%=book.id%>" class="btn btn-primary btn-sm" tabindex="-1" role="button" aria-disabled="true">Edita</a>
-            <a href="/livros" class="btn btn-primary btn-sm">Voltar</a>
+            <a href="/livro?id=<%=book.id%>" class="btn btn-primary btn-sm" tabindex="-1" role="button" aria-disabled="true">Edita</a>
+            <a href="/livros/lista" class="btn btn-primary btn-sm">Voltar</a>
           </div>
           <div class="col-sm"></div>
         </div>

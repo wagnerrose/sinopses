@@ -9,7 +9,7 @@ module.exports = function(application) {
 
   // Lista todos autores
   application.get('/autores/lista', function(req,res){
-    validator = undefined
+    let validator = undefined
     application.app.controllers.authors.authors(validator, application, req, res);
   });
 
@@ -21,7 +21,7 @@ module.exports = function(application) {
     } else {
       application.app.controllers.authors.updateForm(application, req, res);
     };
-  });                  
+  });                   
 
   // Cria registro autor 
   application.post('/autor/novo', 

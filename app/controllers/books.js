@@ -1,86 +1,132 @@
-async function getCategories(application, connection) {
-  let categoriesModel = new application.app.models.categoriesModel(connection);
-  let categories;
-  await categoriesModel.getCategories(function(error, result){
-      categories = result.rows;
-    });
-  return categories;
+const {check, validationResult} = require('express-validator');
+// Mostra um Livro 
+module.exports.book = function(application, req, res){
+  var connection = application.config.dbConnection;
+  var booksModel = new application.app.models.booksModel(connection);
+
+  let book = req.query;
+
+  booksModel.getBook(book, function(error, result){
+    res.render("books/book", {book: result.rows[0]});
+  })
+}
+
+// Lista todos Livros
+module.exports.books = function(validator,application, req, res){
+  var connection = application.config.dbConnection;
+  var booksModel = new application.app.models.booksModel(connection);
+
+  booksModel.getBooks(function(error, result){
+    res.render("books/books", {validator : validator, books: result.rows});
+  })
+}
+
+// Create Form
+module.exports.createForm = async function(application, req, res){
+  const connection = application.config.dbConnection;
+  const booksModel = new application.app.models.booksModel(connection);
+
+  let selectCategories = await booksModel.selectCategories();
+  let selectAuthors = await booksModel.selectAuthors();
+  let selectPublishers = await booksModel.selectPublishers();
+
+  res.render('books/createBook', {validator : undefined, book : {}, selectCategories : selectCategories, selectAuthors : selectAuthors, selectPublishers : selectPublishers  });
 };
 
-async function getAuthors(application, connection){
-  let authorsModel = new application.app.models.authorsModel(connection);
-  let authors;
-  await authorsModel.getAuthors( function(error, result){
-    if(error){
-      console.log(error.stack)
-    } else {
-      authors = result.rows;
-    }
+// Update Form
+module.exports.updateForm = async function(application, req, res){
+  const connection = application.config.dbConnection;
+  const booksModel = new application.app.models.booksModel(connection);
+
+  let selectCategories = await booksModel.selectCategories();
+  let selectAuthors = await booksModel.selectAuthors();
+  let selectPublishers = await booksModel.selectPublishers();
+
+  // encontra registro e chama form update
+  await booksModel.findBook(req.query, async function(error, result){
+    res.render('books/updateBook', {validator : undefined, book : result.rows[0], selectCategories : selectCategories, selectAuthors : selectAuthors, selectPublishers : selectPublishers  });
+    await booksModel.end();
   });
-  return authors;
-}
-
-async function getPublishers(application, connection){
-  let publishersModel = new application.app.models.publishersModel(connection);
-  let publishers;
-  await publishersModel.getPublishers(function(error, result){
-    if(error){
-      console.log(error.stack)
-    } else {
-      publishers = result.rows;
-    }
-  });
-  return publishers;
-}
-
-module.exports.book = function(application, req, res){
-    let connection = application.config.dbConnection;
-    let booksModel = new application.app.models.booksModel(connection);
-    
-    let find = req.query;
-
-    booksModel.getBook(find, function(error, result){
-      res.render("books/book", {book: result.rows[0]});
-    })
-    // connection.close();
-}
-
-module.exports.books = function(application, req, res){
-    let connection = application.config.dbConnection;
-    let booksModel = new application.app.models.booksModel(connection);
-    
-    booksModel.getBooks(function(error, result){
-      res.render("books/books", {books: result.rows});
-    })
-}
+};
 
 // Create
 module.exports.create = async function(application, req, res){
-  // let connection = application.config.dbConnection;
-  // let booksModel = new application.app.models.booksModel(connection);
+  // Instancia o modelo
+  let connection = application.config.dbConnection;
+  let booksModel = new application.app.models.booksModel(connection);
+  let book = {} 
+  book.title = req.body.title;
+  book.authorid = req.body.authorid;
+  book.publisherid = req.body.publisherid;
+  book.sinopisid = req.body.sinopisisid;
+  book.publisheddate = req.body.publisheddate;
+  book.isbn_13 = req.body.isbn_13;
+  book.categoriesid = req.body.categoriesid;
+  book.synopsis = req.body.synopsis;
 
-  res.render('books/createBook', {validator : undefined});
+  // validacao de dados
+  const validator = validationResult(req);
+  if(!validator.isEmpty()) {
+    console.log('entrei no erro')
+    let selectCategories = await booksModel.selectCategories();
+    let selectAuthors = await booksModel.selectAuthors();
+    let selectPublishers = await booksModel.selectPublishers();
+
+    res.render('books/createBook', {
+      validator : validator, 
+      book : book,
+      selectCategories : selectCategories,
+      selectAuthors : selectAuthors,
+      selectPublishers : selectPublishers 
+    });
+  } else {
+    // cria novo registro
+    booksModel.create(book, function(error, result){
+      res.redirect("/livros/lista");
+    });
+  };
 }
 
-  // Update
+// update
 module.exports.update = async function(application, req, res){
+  // Instancia o modelo
   let connection = application.config.dbConnection;
   let booksModel = new application.app.models.booksModel(connection);
 
-  let book;
-  let find = req.query;
-  if (find.id) {
-    await booksModel.findBook(find, function(error, result){
-      if(error){
-        console.log(error.stack);
-      } else {
-        book = result.rows[0];
-      };
-    });
-  }
-  let categories = await getCategories(application, connection);
-  let authors = await getAuthors(application, connection);
-  let publishers = await getPublishers(application, connection);
+  let book = {} 
+  book.title = req.body.title;
+  book.authorid = req.body.authorid;
+  book.publisherid = req.body.publisherid;
+  book.sinopisid = req.body.sinopisisid;
+  book.publisheddate = req.body.publisheddate;
+  book.isbn_13 = req.body.isbn_13;
+  book.categoriesid = req.body.categoriesid;
+  book.synopsis = req.body.synopsis;
+  book.id = req.params.id;
+  console.log('Book Controller update ==>',req.body);
 
-  res.render('books/updateBook', {validator : undefined, book : book, categories : categories, authors : authors, publishers : publishers  });
+  // valida dados e retorna em caso de erro com mensagem
+  let validator = validationResult(req);
+  if(!validator.isEmpty()) {
+      res.render("books/updateBook",{validator : validator, book : book});
+  };
+
+  // atualiza registro
+  console.log('controller book', book)
+  result = await booksModel.update(book);
+  result ? validator = "Livro atualizado": validator = "Ocorreu um erro ao atualizar o livro."
+  application.app.controllers.books.books(validator, application, req, res);
+}
+
+// Delete
+module.exports.delete = async function(application, req, res){
+  let connection = application.config.dbConnection;
+  let booksModel = new application.app.models.booksModel(connection);
+  let book = req.query;
+  let validator
+  let result // retirar apos testes
+  console.log('entrei no delete')
+  // let result = await booksModel.delete(book);
+  result ? validator = "Autor apagado": validator = "Ocorreu um erro ao apagar o autor."
+  application.app.controllers.authors.authors(validator, application, req, res);
 }

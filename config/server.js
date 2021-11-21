@@ -5,14 +5,17 @@ const bodyParser = require('body-parser');
 
 const app = express();
 // const {check, validationResult} = require('express-validator');
-let dir = path.join(__dirname, '../app/public/');
+// let dir = path.join(__dirname, 'public');
+
+
 
 app.set('view engine', 'ejs');
 app.set('views', './app/views');
 
 // ## funciona como midleware
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static(dir));
+app.use(express.static(path.join(__dirname,"../app/public")));
+
 consign()
   .include('app/routes')
   .then('config/dbConnection.js')  

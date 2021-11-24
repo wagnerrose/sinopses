@@ -124,9 +124,9 @@ module.exports.delete = async function(application, req, res){
   let booksModel = new application.app.models.booksModel(connection);
   let book = req.query;
   let validator
-  let result // retirar apos testes
+  // let result // retirar apos testes
   console.log('entrei no delete')
-  // let result = await booksModel.delete(book);
-  result ? validator = "Autor apagado": validator = "Ocorreu um erro ao apagar o autor."
-  application.app.controllers.authors.authors(validator, application, req, res);
+  let result = await booksModel.delete(book);
+  result ? validator = "Livro apagado": validator = "Ocorreu um erro ao apagar o livro."
+  application.app.controllers.books.books(validator, application, req, res);
 }

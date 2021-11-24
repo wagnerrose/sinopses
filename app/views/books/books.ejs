@@ -27,7 +27,6 @@
 										</tr>
 									</thead>
 									<tbody>
-										<% console.log('View books',books) %> 
 										<% for( let i = 0; i < books.length; i++ ) { %>
 											<tr>
 												<td><%= books[i].id %> </td>
@@ -36,7 +35,7 @@
 												<td><%= books[i].publisher %> </td>
 												<td><%= books[i].category %> </td>
 												<td>
-													<a href="#" class='confirmation' title="Apaga Livro" onclick="return confirm('Tem certeza que desejas apagar?');">
+													<a href="/livro/apaga?id=<%=books[i].id %>" class='confirmation' title="Apaga Livro" onclick="return confirm('Tem certeza que deseja apagar?');">
 														<i class="fa fa-trash" style="color:crimson"></i><span style="color: crimson"> Apagar</span>
 													</a>
 												</td>

@@ -15,7 +15,6 @@ Books.prototype.getBook =  async function(book, callback){
      inner join categories as ct 
      on bk.categoriesid = ct.id
      where bk.id = ${book.id};`;
-  console.log('getBook SQL ==>', sql)
 
   try {
     await this._client.query(sql, callback);
@@ -49,7 +48,6 @@ Books.prototype.create = async function(book, callback){
   VALUES ('${book.title}', ${book.authorid}, ${book.publisherid},'${book.publisheddate}',
     ${book.isbn_13}, ${book.categoriesid}, '${book.synopsis}')`;
   
-  console.log('Create sql ==>', sql);
   try {
     await this._client.query(sql, callback);
     return true;
@@ -67,7 +65,7 @@ Books.prototype.update = async function(book, callback){
       publisheddate= '${book.publisheddate}', isbn_13 = ${book.isbn_13},
       categoriesid= ${book.categoriesid},synopsis= '${book.synopsis}'
     WHERE id= ${book.id}`;
-  console.log('Model livro update:', book)
+
   try {
     await this._client.query(sql, callback);
     return true;
@@ -78,11 +76,10 @@ Books.prototype.update = async function(book, callback){
 };
 
 // Apaga um livro
-Books.prototype.delete = async function(book, callback) {
+Books.prototype.delete = async function(book) {
   const sql = `DELETE FROM books WHERE id=${book.id};`
-
   try {
-    await this._client.query(sql, callback);
+    await this._client.query(sql);
     return true;
   } catch (error) {
     console.error(error.stack);

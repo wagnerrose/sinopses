@@ -18,7 +18,7 @@ Categories.prototype.getCategory = async function(category,callback){
  
 // Get all Categories
 Categories.prototype.getCategories = async function(callback){
-  sql = 'SELECT * FROM categories;';
+  sql = 'SELECT * FROM categories ORDER BY category;';
   try {
     await this._client.query(sql, callback);// send query
     return true;

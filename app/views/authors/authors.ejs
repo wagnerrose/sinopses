@@ -38,10 +38,10 @@
 									<% for( let i = 0; i < authors.length; i++ ) { %>
 										<tr>
 											<td><%= authors[i].id %> </td>
-											<td><a href="/autor/mostra?id=<%=authors[i].id %>" title="Detalha/Edita Autor" > <%= authors[i].name %></a> </td>
+											<td><a href="/autor/mostra?id=<%=authors[i].id %>" title="Detalhar/Editar Autor" > <%= authors[i].name %></a> </td>
 											<td><%= authors[i].birthdate != undefined ? authors[i].birthdate.toLocaleDateString() : authors[i].birthdate %> </td>
 											<td>
-												<a href="/autor/apaga?id=<%=authors[i].id %>" class='confirmation' title="Apaga Autor" onclick="return confirm('Tem certeza que deseja apagar?');">
+												<a href="/autor/apaga?id=<%=authors[i].id %>" class='confirmation' title="Apagar Autor" onclick="return confirm('Tem certeza que deseja apagar?');">
 													<i class="fa fa-trash" style="color:crimson"></i><span style="color: crimson"> Apagar</span>
 												</a>
 											</td>

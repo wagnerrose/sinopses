@@ -35,7 +35,8 @@ Books.prototype.getBook =  async function(book, callback){
    INNER JOIN publishers AS pb 
    ON bk.publisherid = pb.id
    INNER JOIN categories AS ct
-   ON bk.categoriesid = ct.id;`;
+   ON bk.categoriesid = ct.id
+   ORDER BY bk.title`;
   await this._client.query(sql, callback);
   await this._client.end();
 };
@@ -47,14 +48,10 @@ Books.prototype.create = async function(book, callback){
   (title, authorid, publisherid, publisheddate, isbn_13, categoriesid, synopsis)
   VALUES ('${book.title}', ${book.authorid}, ${book.publisherid},'${book.publisheddate}',
     ${book.isbn_13}, ${book.categoriesid}, '${book.synopsis}')`;
-  
-  try {
+    
+    console.log('books model create book', sql);  
+
     await this._client.query(sql, callback);
-    return true;
-  } catch (error) {
-    console.error(error.stack);
-    return false;
-  }
 };
 
 // Atualiza um livro

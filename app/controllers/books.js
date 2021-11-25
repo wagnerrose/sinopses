@@ -25,7 +25,7 @@ module.exports.books = function(validator,application, req, res){
 module.exports.createForm = async function(application, req, res){
   const connection = application.config.dbConnection;
   const booksModel = new application.app.models.booksModel(connection);
-
+  // preenche selectbox categorias, autores e editoras
   let selectCategories = await booksModel.selectCategories();
   let selectAuthors = await booksModel.selectAuthors();
   let selectPublishers = await booksModel.selectPublishers();
@@ -58,7 +58,6 @@ module.exports.create = async function(application, req, res){
   book.title = req.body.title;
   book.authorid = req.body.authorid;
   book.publisherid = req.body.publisherid;
-  book.sinopisid = req.body.sinopisisid;
   book.publisheddate = req.body.publisheddate;
   book.isbn_13 = req.body.isbn_13;
   book.categoriesid = req.body.categoriesid;
@@ -67,7 +66,7 @@ module.exports.create = async function(application, req, res){
   // validacao de dados
   const validator = validationResult(req);
   if(!validator.isEmpty()) {
-    console.log('entrei no erro')
+    console.log('books controller create error', validator)
     let selectCategories = await booksModel.selectCategories();
     let selectAuthors = await booksModel.selectAuthors();
     let selectPublishers = await booksModel.selectPublishers();
@@ -80,8 +79,12 @@ module.exports.create = async function(application, req, res){
       selectPublishers : selectPublishers 
     });
   } else {
+    console.log('books controller create book', book);
     // cria novo registro
     booksModel.create(book, function(error, result){
+      if(error){
+        console.log('Controller book create error', error);
+      }
       res.redirect("/livros/lista");
     });
   };
@@ -125,8 +128,9 @@ module.exports.delete = async function(application, req, res){
   let book = req.query;
   let validator
   // let result // retirar apos testes
-  console.log('entrei no delete')
+  console.log('books controller delete book', book);
   let result = await booksModel.delete(book);
   result ? validator = "Livro apagado": validator = "Ocorreu um erro ao apagar o livro."
+  console.log('books controller delete result', result);
   application.app.controllers.books.books(validator, application, req, res);
 }

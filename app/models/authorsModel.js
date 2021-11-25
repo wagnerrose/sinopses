@@ -19,7 +19,7 @@ Authors.prototype.getAuthor = async function(author, callback){
 };
 // Get all Authors
 Authors.prototype.getAuthors = async function(callback){
-  const sql = 'SELECT * FROM authors;';
+  const sql = 'SELECT * FROM authors ORDER BY name;';
 
   try {
     await this._client.query(sql, callback); // send query

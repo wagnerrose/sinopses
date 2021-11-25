@@ -30,12 +30,12 @@
 										<% for( let i = 0; i < books.length; i++ ) { %>
 											<tr>
 												<td><%= books[i].id %> </td>
-												<td><a href="/livro/mostra?id=<%= books[i].id %>" title="Detalha/Edita Livro"> <%= books[i].title %></a> </td>
+												<td><a href="/livro/mostra?id=<%= books[i].id %>" title="Detalhar/Editar Livro"> <%= books[i].title %></a> </td>
 												<td><%= books[i].author %> </td>
 												<td><%= books[i].publisher %> </td>
 												<td><%= books[i].category %> </td>
 												<td>
-													<a href="/livro/apaga?id=<%=books[i].id %>" class='confirmation' title="Apaga Livro" onclick="return confirm('Tem certeza que deseja apagar?');">
+													<a href="/livro/apaga?id=<%=books[i].id %>" class='confirmation' title="Apagar Livro" onclick="return confirm('Tem certeza que deseja apagar?');">
 														<i class="fa fa-trash" style="color:crimson"></i><span style="color: crimson"> Apagar</span>
 													</a>
 												</td>

@@ -32,15 +32,15 @@ module.exports.createForm = function(application, req, res){
 // Update Form
 module.exports.updateForm = function(application, req, res){
 
-var connection = application.config.dbConnection;
-var authorsModel = new application.app.models.authorsModel(connection);
+  var connection = application.config.dbConnection;
+  var authorsModel = new application.app.models.authorsModel(connection);
 
-// obtem indice
-var author = req.query;
-// encontra registro e chama form update
-authorsModel.getAuthor(author,function(error, result){
-  res.render("authors/updateAuthor", {validator : undefined, author: result.rows[0]});
-  authorsModel.end();// encerra conexão
+  // obtem indice
+  var author = req.query;
+  // encontra registro e chama form update
+  authorsModel.getAuthor(author,function(error, result){
+    res.render("authors/updateAuthor", {validator : undefined, author: result.rows[0]});
+    authorsModel.end();// encerra conexão
 })
 };
 

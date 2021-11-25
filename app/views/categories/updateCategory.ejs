@@ -29,12 +29,17 @@
 							<div class="jumbotron">
 								<form action="/categoria/<%=category.id%>" class="form-group" method="post">
 									<label for="fname">Categoria:</label><br>
-									<input type="text" class="form-control" id="category" name="category" value="<%= typeof category != 'undefined' ? category.category : '' %>"><br>
-									<div class="row">
-										<div class="col">
-											<input class="btn btn-primary btn-sm" type="submit" value="Salvar">
-											<a href="/categorias/lista" class="btn btn-danger btn-sm" tabindex="-1" role="button" aria-disabled="true">Cancela</a>
+									<input type="text" class="form-control" id="category" name="category" value="<%= typeof category != 'undefined' ? category.category : '' %>">
+
+									<div class="row" style="margin-top: 10px;" >
+										<div class="col col-sm-4"></div>
+										<div class="col col-sm-4">
+											<div class="form-group">
+												<input class="btn btn-primary btn-sm" type="submit" value="Salvar">
+												<a href="/categorias/lista" class="btn btn-danger btn-sm" tabindex="-1" role="button" aria-disabled="true">Cancelar</a>
+											</div>
 										</div>
+										<div class="col col-sm-4"></div>
 									</div>
 								</form>
 							</div>

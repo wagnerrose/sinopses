@@ -18,7 +18,7 @@ Publishers.prototype.getPublisher = async function(publisher, callback){
 
 // Get all Publishers
 Publishers.prototype.getPublishers = async function(callback){
-  const sql = 'SELECT * FROM publishers';
+  const sql = 'SELECT * FROM publishers ORDER BY name;';
   try {
     await this._client.query(sql, callback);
     return true;
